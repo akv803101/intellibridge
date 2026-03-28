@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "dev:clean": "rm -rf .next node_modules/.cache && next dev",
-    "build": "next build",
-    "build:vercel": "next build && node scripts/export-to-public.mjs",
+    "build": "node scripts/clean-public.mjs && next build && node scripts/export-to-public.mjs",
+    "build:next-only": "next build",
     "start": "npx --yes serve@14 out -l 3000",
     "lint": "CI=true next lint"
   },
