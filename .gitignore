@@ -1,6 +1,9 @@
 node_modules
 .next
 out
+
+# Static export is copied here on Vercel (scripts/export-to-public.mjs); do not commit
+/public
 .env
 .env.local
 .env*.local
