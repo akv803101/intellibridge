@@ -92,9 +92,6 @@ export function HomeContent() {
     ))}
   </ul>
   <div className="nav-ctas">
-    <Link href="/blog" className="nav-blog-mobile">
-      Blog
-    </Link>
     <a href="http://business.intellibridge.in/" className="btn btn-outline" target="_blank" rel="noopener noreferrer">Corporate Training</a>
     <a href="#" className="btn btn-ghost">Login</a>
     <button type="button" className="btn btn-primary" onClick={() => setApplyOpen(true)}>
@@ -103,7 +100,11 @@ export function HomeContent() {
   </div>
 </nav>
 
-<MainNavDrawer open={mobileNavOpen} onClose={() => setMobileNavOpen(false)} />
+<MainNavDrawer
+        open={mobileNavOpen}
+        onClose={() => setMobileNavOpen(false)}
+        homeActions={{ onApply: () => setApplyOpen(true) }}
+      />
 
 <section className="hero">
   <div className="hero-bg"></div>

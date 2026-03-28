@@ -8,9 +8,15 @@ type Props = {
   onClose: () => void
   /** Highlight Blog when on blog routes */
   blogActive?: boolean
+  /** Home page: extra CTAs that sit in the bar on desktop only */
+  homeActions?: {
+    onApply: () => void
+  }
 }
 
-export function MainNavDrawer({ open, onClose, blogActive }: Props) {
+const CORPORATE_URL = 'http://business.intellibridge.in/'
+
+export function MainNavDrawer({ open, onClose, blogActive, homeActions }: Props) {
   return (
     <div
       className={`nav-mobile-layer ${open ? 'nav-mobile-layer--open' : ''}`}
@@ -45,6 +51,42 @@ export function MainNavDrawer({ open, onClose, blogActive }: Props) {
             )
           })}
         </ul>
+        {homeActions ? (
+          <>
+            <div className="nav-mobile-divider" aria-hidden />
+            <div className="nav-mobile-actions">
+              <a
+                href={CORPORATE_URL}
+                className="btn btn-outline nav-mobile-action-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={onClose}
+              >
+                Corporate Training
+              </a>
+              <a
+                href="#"
+                className="btn btn-ghost nav-mobile-action-btn"
+                onClick={(e) => {
+                  e.preventDefault()
+                  onClose()
+                }}
+              >
+                Login
+              </a>
+              <button
+                type="button"
+                className="btn btn-primary nav-mobile-action-btn"
+                onClick={() => {
+                  onClose()
+                  homeActions.onApply()
+                }}
+              >
+                Apply Now →
+              </button>
+            </div>
+          </>
+        ) : null}
       </nav>
     </div>
   )
