@@ -62,7 +62,7 @@ export default async function BlogPage() {
   const posts = await getPosts()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-16 font-[family-name:var(--font-dm)] text-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 pb-8 pt-[max(4rem,calc(3.5rem+env(safe-area-inset-top)))] font-[family-name:var(--font-jakarta)] text-gray-900">
       <BlogNav active="blog" />
 
       <section className="relative overflow-hidden bg-[#050b1a] px-4 py-20 text-white sm:px-6 lg:px-8">
@@ -73,7 +73,7 @@ export default async function BlogPage() {
           }}
         />
         <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-          <h1 className="mb-4 font-[family-name:var(--font-syne)] text-[clamp(2.25rem,5vw,3rem)] font-black tracking-tight">
+          <h1 className="mb-4 font-[family-name:var(--font-jakarta)] text-[clamp(2.25rem,5vw,3rem)] font-black tracking-tight">
             Our Blog
           </h1>
           <p className="mx-auto max-w-3xl text-lg text-gray-400 sm:text-xl">Insights and updates on emerging technology trends.</p>

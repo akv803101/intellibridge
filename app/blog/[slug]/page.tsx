@@ -129,10 +129,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-16 font-[family-name:var(--font-dm)]">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-[max(4rem,calc(3.5rem+env(safe-area-inset-top)))] font-[family-name:var(--font-jakarta)]">
       <BlogNav />
 
-      <article className="px-4 py-28 sm:px-6 lg:px-8">
+      <article className="px-4 pb-16 pt-12 sm:px-6 sm:pb-20 sm:pt-20 lg:px-8 lg:pb-28 lg:pt-28">
         <div className="mx-auto max-w-4xl">
           {post.categories && post.categories.length > 0 && (
             <div className="mb-4 flex flex-wrap gap-2">
@@ -147,7 +147,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
           )}
 
-          <h1 className="mb-6 font-[family-name:var(--font-syne)] text-4xl font-black tracking-tight text-gray-900 md:text-5xl">
+          <h1 className="mb-6 font-[family-name:var(--font-jakarta)] text-[clamp(1.75rem,5vw,2.75rem)] font-black tracking-tight text-gray-900 sm:text-4xl md:text-5xl">
             {post.title}
           </h1>
 

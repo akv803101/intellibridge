@@ -1,9 +1,30 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { ApplyModal } from '@/components/ApplyModal'
+import { BrandLogo } from '@/components/BrandLogo'
+import { MainNavDrawer } from '@/components/MainNavDrawer'
+import { MAIN_NAV_ITEMS } from '@/lib/mainNavLinks'
 
 export function HomeContent() {
+  const [applyOpen, setApplyOpen] = useState(false)
+  const [mobileNavOpen, setMobileNavOpen] = useState(false)
+
+  useEffect(() => {
+    if (!mobileNavOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileNavOpen(false)
+    }
+    document.addEventListener('keydown', onKey)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = prev
+    }
+  }, [mobileNavOpen])
+
   useEffect(() => {
     const faqBtns = document.querySelectorAll('.faq-q')
     const faqListeners: Array<{ el: Element; fn: EventListener }> = []
@@ -44,14 +65,31 @@ export function HomeContent() {
   return (
     <>
 <nav>
-  <div className="logo">Intelli<span>Bridge</span></div>
+  <BrandLogo priority />
+  <button
+    type="button"
+    className="nav-menu-btn"
+    aria-expanded={mobileNavOpen}
+    aria-controls="site-nav-drawer"
+    onClick={() => setMobileNavOpen((o) => !o)}
+  >
+    <span className="sr-only">{mobileNavOpen ? 'Close menu' : 'Open menu'}</span>
+    <span className={`nav-menu-icon ${mobileNavOpen ? 'nav-menu-icon--open' : ''}`} aria-hidden>
+      <span />
+      <span />
+      <span />
+    </span>
+  </button>
   <ul className="nav-links">
-    <li><a href="#programs">Programs</a></li>
-    <li><a href="#curriculum">Curriculum</a></li>
-    <li><a href="#mentors">Mentors</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><Link href="/blog">Blog</Link></li>
+    {MAIN_NAV_ITEMS.map(({ href, label }) => (
+      <li key={href}>
+        {href === '/blog' ? (
+          <Link href={href}>{label}</Link>
+        ) : (
+          <a href={href}>{label}</a>
+        )}
+      </li>
+    ))}
   </ul>
   <div className="nav-ctas">
     <Link href="/blog" className="nav-blog-mobile">
@@ -59,10 +97,13 @@ export function HomeContent() {
     </Link>
     <a href="http://business.intellibridge.in/" className="btn btn-outline" target="_blank" rel="noopener noreferrer">Corporate Training</a>
     <a href="#" className="btn btn-ghost">Login</a>
-    <a href="#apply" className="btn btn-primary">Apply Now →</a>
+    <button type="button" className="btn btn-primary" onClick={() => setApplyOpen(true)}>
+      Apply Now →
+    </button>
   </div>
 </nav>
 
+<MainNavDrawer open={mobileNavOpen} onClose={() => setMobileNavOpen(false)} />
 
 <section className="hero">
   <div className="hero-bg"></div>
@@ -72,7 +113,9 @@ export function HomeContent() {
     <h1>Become a <em>Data & AI</em><br />Professional in 16 Weeks</h1>
     <p className="hero-sub">Hands-on, mentor-led programs in Data Science, Data Engineering, Business Intelligence, AI and Automation — built for real-world career outcomes across every industry.</p>
     <div className="hero-ctas">
-      <a href="#apply" className="btn btn-primary btn-lg">Apply for Next Cohort →</a>
+      <button type="button" className="btn btn-primary btn-lg" onClick={() => setApplyOpen(true)}>
+        Apply for Next Cohort →
+      </button>
       <a href="#programs" className="btn btn-outline btn-lg">Explore Programs</a>
     </div>
     <p className="cohort-tag">🗓️ Cohort 5 starts <strong>15 June 2025</strong> · Limited seats</p>
@@ -195,7 +238,7 @@ export function HomeContent() {
     <div className="section-label">The IntelliBridge Difference</div>
     <h2>Why 1,200+ professionals<br /><em>chose IntelliBridge</em></h2>
     <p className="section-sub">Not all bootcamps are equal. See exactly what sets us apart from generic online courses and mass-market platforms.</p>
-    <div style={{ overflowX: 'auto', border: '1px solid var(--border)', borderRadius: 14 }}>
+    <div className="compare-scroll" style={{ overflowX: 'auto', border: '1px solid var(--border)', borderRadius: 14 }}>
       <table className="compare-table">
         <thead>
           <tr>
@@ -431,9 +474,14 @@ export function HomeContent() {
           <li>1 year community access</li>
           <li>Placement support</li>
         </ul>
-        <a href="#apply" className="btn btn-outline" style={{ width: '100%', justifyContent: 'center' }}>
+        <button
+          type="button"
+          className="btn btn-outline"
+          style={{ width: '100%', justifyContent: 'center' }}
+          onClick={() => setApplyOpen(true)}
+        >
           Apply Now →
-        </a>
+        </button>
       </div>
       <div className="price-card featured">
         <div className="featured-badge">Most Popular</div>
@@ -450,9 +498,14 @@ export function HomeContent() {
           <li>Job referral network access</li>
           <li>Free cohort transfer (once)</li>
         </ul>
-        <a href="#apply" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+        <button
+          type="button"
+          className="btn btn-primary"
+          style={{ width: '100%', justifyContent: 'center' }}
+          onClick={() => setApplyOpen(true)}
+        >
           Apply Now →
-        </a>
+        </button>
       </div>
     </div>
     <p style={{ textAlign: 'center', color: 'var(--muted)', fontSize: '0.85rem', marginTop: '1.5rem' }}>
@@ -508,7 +561,9 @@ export function HomeContent() {
     <h2>Ready to become a<br /><em>Data & AI professional?</em></h2>
     <p>Join Cohort 5 — starting 15 June 2025. Limited to 40 seats per track.</p>
     <div className="hero-ctas">
-      <a href="mailto:hello@intellibridge.in" className="btn btn-primary btn-lg">Apply Now →</a>
+      <button type="button" className="btn btn-primary btn-lg" onClick={() => setApplyOpen(true)}>
+        Apply Now →
+      </button>
       <a href="tel:+916360156124" className="btn btn-outline btn-lg">Book a Call</a>
     </div>
     <div className="trust-row">
@@ -524,7 +579,7 @@ export function HomeContent() {
   <div className="container">
     <div className="footer-grid">
       <div className="footer-brand">
-        <div className="logo">Intelli<span>Bridge</span></div>
+        <BrandLogo heightClass="h-8 w-auto sm:h-9" className="mb-1" />
         <p>India's leading practitioner-led bootcamp for Data Science, Data Engineering, BI, AI and Automation careers.</p>
         <div className="social-links" style={{ marginTop: '1rem' }}>
           <a href="#">in</a>
@@ -568,8 +623,12 @@ export function HomeContent() {
 
 <div className="sticky-bar" id="stickyBar">
   <p>🗓️ Cohort 5 starts <span>15 June 2025</span> · Only 12 seats left</p>
-  <a href="#apply" className="btn btn-primary">Apply Now →</a>
+  <button type="button" className="btn btn-primary" onClick={() => setApplyOpen(true)}>
+    Apply Now →
+  </button>
 </div>
+
+      <ApplyModal open={applyOpen} onClose={() => setApplyOpen(false)} />
 
     </>
   )

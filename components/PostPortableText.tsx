@@ -58,7 +58,7 @@ type Props = { value: PortableTextBlock[] | null | undefined }
 export function PostPortableText({ value }: Props) {
   if (!value?.length) return null
   return (
-    <div className="prose prose-lg max-w-none">
+    <div className="prose prose-sm max-w-none sm:prose-base lg:prose-lg prose-headings:scroll-mt-24 prose-pre:overflow-x-auto prose-img:max-w-full">
       <PortableText value={value} components={components} />
     </div>
   )

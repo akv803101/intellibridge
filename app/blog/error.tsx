@@ -10,7 +10,7 @@ export default function BlogError({ error, reset }: { error: Error & { digest?: 
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 px-4 text-center text-gray-900">
-      <h1 className="mb-3 font-[family-name:var(--font-syne)] text-2xl font-bold">Something went wrong loading the blog</h1>
+      <h1 className="mb-3 font-[family-name:var(--font-jakarta)] text-2xl font-bold">Something went wrong loading the blog</h1>
       <p className="mb-6 max-w-md text-gray-600">
         Try again, or restart the dev server with a clean cache: stop it, then run{' '}
         <code className="rounded bg-gray-100 px-1.5 py-0.5 text-sm">npm run dev:clean</code>
