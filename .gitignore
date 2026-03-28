@@ -2,7 +2,7 @@ node_modules
 .next
 out
 
-# Do not gitignore public/: Vercel may omit it from deploys. Use `npm run clean` to remove local build output.
+# Use `npm run clean` to remove local build artifacts (.next, out, cache).
 .env
 .env.local
 .env*.local
