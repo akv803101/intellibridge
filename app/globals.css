@@ -332,7 +332,77 @@
   .testi-badge { display: inline-block; margin-top: .3rem; padding: .15rem .55rem; border-radius: 4px; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
 
   /* ─── MENTORS ─── */
-  .mentor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+  .mentor-carousel-wrap { margin-top: 0.25rem; }
+  .mentor-carousel-toolbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .mentor-carousel-nav { display: flex; gap: 0.5rem; }
+  .mentor-carousel-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.04);
+    color: var(--white);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color .2s, background .2s, opacity .2s;
+    touch-action: manipulation;
+    font-family: var(--font-jakarta), system-ui, sans-serif;
+  }
+  .mentor-carousel-btn:hover:not(:disabled) {
+    border-color: rgba(0,229,192,.35);
+    background: rgba(0,229,192,.06);
+  }
+  .mentor-carousel-btn:disabled {
+    opacity: 0.32;
+    cursor: not-allowed;
+  }
+  .mentor-carousel {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-color: rgba(0,229,192,.35) transparent;
+  }
+  .mentor-carousel:focus { outline: none; }
+  .mentor-carousel:focus-visible {
+    outline: 2px solid rgba(0,229,192,.45);
+    outline-offset: 4px;
+  }
+  .mentor-carousel-slide {
+    flex: 0 0 min(100%, 300px);
+    scroll-snap-align: start;
+    min-width: 0;
+  }
+  @media(min-width:640px){
+    .mentor-carousel-slide {
+      flex: 0 0 calc((100% - 1.25rem) / 2);
+      max-width: 400px;
+    }
+  }
+  @media(min-width:1024px){
+    .mentor-carousel-slide {
+      flex: 0 0 calc((100% - 2 * 1.25rem) / 3);
+      max-width: 420px;
+    }
+  }
+  .mentor-card--carousel {
+    height: 100%;
+    margin: 0;
+  }
   .mentor-card {
     background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; text-align: center;
     transition: border-color .2s, transform .2s;

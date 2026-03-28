@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { ApplyModal } from '@/components/ApplyModal'
 import { BrandLogo } from '@/components/BrandLogo'
 import { MainNavDrawer } from '@/components/MainNavDrawer'
+import { MentorsCarousel } from '@/components/MentorsCarousel'
 import { MAIN_NAV_ITEMS } from '@/lib/mainNavLinks'
 
 export function HomeContent() {
@@ -374,36 +375,7 @@ export function HomeContent() {
     <div className="section-label">Your Mentors</div>
     <h2>Learn from people<br /><em>actually doing the work</em></h2>
     <p className="section-sub">Every mentor has at least 8 years of hands-on experience in their field. No academics, no theory-only professors.</p>
-    <div className="mentor-grid">
-      <div className="mentor-card">
-        <div className="mentor-avatar">RS</div>
-        <h4>Rahul Sharma</h4>
-        <div className="mentor-title">Lead Data Scientist · Deloitte India</div>
-        <p>10 years building ML systems in banking and insurance. Led teams at Mu Sigma, ZS Associates, and Deloitte.</p>
-        <div className="mentor-exp"><span className="exp-tag">ML</span><span className="exp-tag">BFSI</span><span className="exp-tag">Python</span></div>
-      </div>
-      <div className="mentor-card">
-        <div className="mentor-avatar">PA</div>
-        <h4>Priya Anand</h4>
-        <div className="mentor-title">Senior DE · Flipkart Data Platform</div>
-        <p>Built petabyte-scale pipelines at Flipkart. Former Thoughtworks engineer with deep expertise in Spark and dbt.</p>
-        <div className="mentor-exp"><span className="exp-tag">Spark</span><span className="exp-tag">dbt</span><span className="exp-tag">GCP</span></div>
-      </div>
-      <div className="mentor-card">
-        <div className="mentor-avatar">VK</div>
-        <h4>Vikram Kumar</h4>
-        <div className="mentor-title">Director Analytics · HDFC Life</div>
-        <p>Transformed BI culture at two Fortune 500 companies. Power BI MVP, Tableau expert, and data storytelling coach.</p>
-        <div className="mentor-exp"><span className="exp-tag">Power BI</span><span className="exp-tag">Tableau</span><span className="exp-tag">SQL</span></div>
-      </div>
-      <div className="mentor-card">
-        <div className="mentor-avatar">NA</div>
-        <h4>Neha Arora</h4>
-        <div className="mentor-title">AI Lead · Zomato · Ex-Google Brain</div>
-        <p>Published researcher in LLMs. Built GenAI features at Zomato used by 50M+ users. Teaches AI product thinking.</p>
-        <div className="mentor-exp"><span className="exp-tag">LLMs</span><span className="exp-tag">GenAI</span><span className="exp-tag">Agents</span></div>
-      </div>
-    </div>
+    <MentorsCarousel />
   </div>
 </section>
 
