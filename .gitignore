@@ -2,8 +2,8 @@ node_modules
 .next
 out
 
-# Filled by npm run build (static export copy); recreated each build by clean-public.mjs
-/public
+# Do not gitignore public/: Vercel can treat gitignored paths as absent for static output.
+# After `npm run build`, leave generated files untracked (do not commit them).
 .env
 .env.local
 .env*.local
