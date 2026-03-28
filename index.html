@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IntelliBridge — Become a Data & AI Professional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #06080f;
+    --bg2: #0c0f1a;
+    --bg3: #111627;
+    --card: #141929;
+    --border: rgba(255,255,255,0.07);
+    --accent: #00e5c0;
+    --accent2: #7b6cff;
+    --accent3: #ff6b6b;
+    --text: #e8eaf0;
+    --muted: #7a82a0;
+    --white: #ffffff;
+    --grad: linear-gradient(135deg, #00e5c0 0%, #7b6cff 100%);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 4%;
+    background: rgba(6,8,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; color: var(--white); letter-spacing: -0.5px; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-ctas { display: flex; gap: .75rem; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+  .btn { display: inline-flex; align-items: center; gap: .4rem; padding: .6rem 1.4rem; border-radius: 6px; font-weight: 600; font-size: .875rem; cursor: pointer; text-decoration: none; transition: all .2s; border: none; font-family: 'DM Sans', sans-serif; }
+  .btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-primary { background: var(--grad); color: #000; font-weight: 700; }
+  .btn-primary:hover { opacity: .88; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,229,192,.2); }
+  .btn-outline { background: transparent; border: 1.5px solid var(--accent); color: var(--accent); }
+  .btn-outline:hover { background: var(--accent); color: #000; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 7rem 4% 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(123,108,255,.18) 0%, transparent 65%),
+                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(0,229,192,.1) 0%, transparent 55%),
+                radial-gradient(ellipse 50% 50% at 10% 90%, rgba(255,107,107,.07) 0%, transparent 55%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 70%);
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; text-align: center; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .4rem 1rem; border-radius: 100px;
+    border: 1px solid rgba(0,229,192,.3);
+    background: rgba(0,229,192,.06);
+    font-size: .8rem; font-weight: 600; color: var(--accent);
+    margin-bottom: 2rem; letter-spacing: .04em; text-transform: uppercase;
+  }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.3)} }
+  h1 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    line-height: 1.1; letter-spacing: -2px;
+    color: var(--white); margin-bottom: 1.5rem;
+  }
+  h1 em { font-style: normal; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 600px; margin: 0 auto 2.5rem; font-weight: 400; line-height: 1.75; }
+  .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
+  .btn-lg { padding: .9rem 2rem; font-size: 1rem; border-radius: 8px; }
+  .cohort-tag { font-size: .85rem; color: var(--muted); margin-top: -.5rem; }
+  .cohort-tag strong { color: var(--accent); }
+  .hero-stats {
+    display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;
+    border-top: 1px solid var(--border); padding-top: 2.5rem; margin-top: 1rem;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--white); }
+  .stat-label { font-size: .78rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: .2rem; }
+
+  /* ─── LOGOS ─── */
+  .logos { padding: 3rem 4%; border-bottom: 1px solid var(--border); text-align: center; }
+  .logos p { font-size: .78rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-bottom: 1.5rem; }
+  .logo-row { display: flex; gap: 2.5rem; justify-content: center; align-items: center; flex-wrap: wrap; }
+  .logo-pill {
+    padding: .45rem 1.2rem; border-radius: 6px;
+    border: 1px solid var(--border); background: var(--card);
+    font-size: .85rem; font-weight: 600; color: var(--muted);
+    font-family: 'Syne', sans-serif; letter-spacing: .03em;
+  }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 6rem 4%; }
+  .section-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .15em; color: var(--accent); font-weight: 700; margin-bottom: .75rem; }
+  h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: var(--white); letter-spacing: -1px; line-height: 1.15; margin-bottom: 1rem; }
+  h2 em { font-style: normal; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .section-sub { color: var(--muted); max-width: 560px; font-size: 1.05rem; margin-bottom: 3.5rem; line-height: 1.7; }
+  .container { max-width: 1160px; margin: 0 auto; }
+
+  /* ─── PROGRAMS ─── */
+  .programs { background: var(--bg2); }
+  .program-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
+  .program-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 1.75rem; cursor: pointer; transition: all .25s; position: relative; overflow: hidden;
+  }
+  .program-card::before {
+    content: ''; position: absolute; inset: 0; opacity: 0; transition: opacity .25s;
+    background: linear-gradient(135deg, rgba(0,229,192,.04) 0%, rgba(123,108,255,.04) 100%);
+  }
+  .program-card:hover { border-color: rgba(0,229,192,.3); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,.3); }
+  .program-card:hover::before { opacity: 1; }
+  .prog-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .prog-tag {
+    display: inline-block; padding: .25rem .7rem; border-radius: 4px; font-size: .7rem;
+    font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 1rem;
+  }
+  .tag-ds { background: rgba(0,229,192,.12); color: var(--accent); }
+  .tag-de { background: rgba(123,108,255,.12); color: var(--accent2); }
+  .tag-bi { background: rgba(255,107,107,.12); color: var(--accent3); }
+  .tag-ai { background: rgba(255,180,0,.12); color: #ffb400; }
+  .tag-auto { background: rgba(0,162,255,.12); color: #00a2ff; }
+  .program-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--white); margin-bottom: .6rem; letter-spacing: -.3px; }
+  .program-card p { font-size: .9rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.2rem; }
+  .prog-meta { display: flex; gap: 1.2rem; font-size: .8rem; color: var(--muted); }
+  .prog-meta span { display: flex; align-items: center; gap: .3rem; }
+
+  /* ─── WHY US (comparison table) ─── */
+  .compare-table { width: 100%; border-collapse: collapse; }
+  .compare-table th { padding: 1rem 1.5rem; text-align: left; font-family: 'Syne', sans-serif; font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .compare-table th:not(:first-child) { text-align: center; }
+  .compare-table td { padding: .9rem 1.5rem; border-bottom: 1px solid var(--border); font-size: .92rem; color: var(--text); }
+  .compare-table td:not(:first-child) { text-align: center; }
+  .compare-table tr:hover td { background: rgba(255,255,255,.02); }
+  .compare-table .col-ib { color: var(--accent); font-weight: 700; }
+  .compare-table .col-others { color: var(--muted); }
+  .tick { color: var(--accent); font-size: 1.1rem; }
+  .cross { color: #444; font-size: 1rem; }
+  .col-head-ib { background: rgba(0,229,192,.06); border-radius: 8px 8px 0 0; }
+
+  /* ─── CURRICULUM ─── */
+  .curriculum-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media(max-width:720px){ .curriculum-wrap { grid-template-columns: 1fr; } }
+  .week-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;
+    transition: border-color .2s;
+  }
+  .week-card:hover { border-color: rgba(123,108,255,.4); }
+  .week-num { font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; color: var(--accent2); font-weight: 700; margin-bottom: .5rem; }
+  .week-card h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--white); margin-bottom: .75rem; letter-spacing: -.2px; }
+  .week-topics { list-style: none; display: flex; flex-direction: column; gap: .4rem; }
+  .week-topics li { font-size: .85rem; color: var(--muted); display: flex; align-items: flex-start; gap: .5rem; }
+  .week-topics li::before { content: '→'; color: var(--accent); font-size: .75rem; margin-top: .15rem; flex-shrink: 0; }
+
+  /* ─── TESTIMONIALS ─── */
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.25rem; }
+  .testi-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem;
+  }
+  .stars { color: #ffb400; font-size: .9rem; margin-bottom: 1rem; }
+  .testi-quote { font-size: .93rem; color: var(--text); line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
+  .testi-person { display: flex; align-items: center; gap: .75rem; }
+  .testi-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--grad); display: flex; align-items: center; justify-content: center; font-family: 'Syne',sans-serif; font-weight: 800; color: #000; font-size: .9rem; flex-shrink: 0; }
+  .testi-name { font-weight: 600; font-size: .9rem; color: var(--white); }
+  .testi-role { font-size: .78rem; color: var(--muted); }
+  .testi-badge { display: inline-block; margin-top: .3rem; padding: .15rem .55rem; border-radius: 4px; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+
+  /* ─── MENTORS ─── */
+  .mentor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; }
+  .mentor-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; text-align: center;
+    transition: border-color .2s, transform .2s;
+  }
+  .mentor-card:hover { border-color: rgba(0,229,192,.3); transform: translateY(-2px); }
+  .mentor-avatar {
+    width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 1rem;
+    background: var(--grad); display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne',sans-serif; font-weight: 800; font-size: 1.4rem; color: #000;
+  }
+  .mentor-card h4 { font-family: 'Syne',sans-serif; font-weight: 700; color: var(--white); margin-bottom: .3rem; }
+  .mentor-card .mentor-title { font-size: .82rem; color: var(--accent); font-weight: 600; margin-bottom: .6rem; }
+  .mentor-card p { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+  .mentor-exp { display: flex; gap: .5rem; justify-content: center; margin-top: .75rem; flex-wrap: wrap; }
+  .exp-tag { padding: .2rem .6rem; border-radius: 4px; font-size: .68rem; font-weight: 600; background: rgba(255,255,255,.05); color: var(--muted); }
+
+  /* ─── PRICING ─── */
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; max-width: 900px; margin: 0 auto; }
+  .price-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 2.25rem; position: relative;
+  }
+  .price-card.featured { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 24px 60px rgba(0,229,192,.12); }
+  .featured-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--grad); color: #000; font-size: .7rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: .1em; padding: .3rem .9rem; border-radius: 100px;
+  }
+  .price-name { font-family: 'Syne',sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--white); margin-bottom: .5rem; }
+  .price-amt { font-family: 'Syne',sans-serif; font-weight: 800; font-size: 2.4rem; color: var(--white); margin: .5rem 0; }
+  .price-amt span { font-size: 1rem; font-weight: 400; color: var(--muted); }
+  .price-emi { font-size: .85rem; color: var(--accent); margin-bottom: 1.5rem; }
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: .65rem; margin-bottom: 2rem; }
+  .price-features li { font-size: .88rem; color: var(--text); display: flex; align-items: flex-start; gap: .6rem; }
+  .price-features li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+
+  /* ─── FAQ ─── */
+  .faq-list { max-width: 720px; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-q {
+    width: 100%; background: none; border: none; color: var(--text); text-align: left;
+    padding: 1.25rem 0; font-size: .95rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: 'DM Sans', sans-serif;
+  }
+  .faq-q:hover { color: var(--white); }
+  .faq-icon { font-size: 1.2rem; color: var(--accent); flex-shrink: 0; }
+  .faq-a { font-size: .88rem; color: var(--muted); line-height: 1.75; padding-bottom: 1.25rem; display: none; }
+  .faq-item.open .faq-a { display: block; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-icon { transition: transform .2s; }
+
+  /* ─── CTA BANNER ─── */
+  .cta-banner {
+    background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 5rem 4%; text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-banner::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(0,229,192,.08) 0%, transparent 65%);
+  }
+  .cta-banner h2 { position: relative; z-index:1; margin-bottom: 1rem; }
+  .cta-banner p { position: relative; z-index:1; color: var(--muted); margin-bottom: 2rem; font-size: 1.05rem; }
+  .cta-banner .hero-ctas { position: relative; z-index:1; }
+  .trust-row { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; position: relative; z-index:1; }
+  .trust-item { font-size: .82rem; color: var(--muted); display: flex; align-items: center; gap: .4rem; }
+  .trust-item::before { content: '✓'; color: var(--accent); font-weight: 700; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg); padding: 3rem 4% 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  @media(max-width:768px){ .footer-grid { grid-template-columns: 1fr 1fr; } }
+  .footer-brand p { color: var(--muted); font-size: .88rem; line-height: 1.7; margin-top: .75rem; max-width: 260px; }
+  .footer-col h5 { font-family: 'Syne',sans-serif; font-weight: 700; color: var(--white); margin-bottom: 1rem; font-size: .9rem; }
+  .footer-col a { display: block; color: var(--muted); text-decoration: none; font-size: .85rem; margin-bottom: .5rem; transition: color .2s; }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; }
+  .footer-bottom p { font-size: .8rem; color: var(--muted); }
+  .social-links { display: flex; gap: .75rem; }
+  .social-links a { width: 34px; height: 34px; border-radius: 6px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); text-decoration: none; font-size: .8rem; transition: all .2s; }
+  .social-links a:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ─── MOBILE NAV ─── */
+  @media(max-width:768px){
+    .nav-links { display: none; }
+    .hero { padding-top: 5rem; }
+    .hero-stats { gap: 1.5rem; }
+    section { padding: 4rem 5%; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+
+  /* ─── TRACK TABS ─── */
+  .track-tabs { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+  .track-tab {
+    padding: .45rem 1.1rem; border-radius: 6px; border: 1px solid var(--border);
+    background: var(--card); color: var(--muted); font-size: .82rem; font-weight: 600; cursor: pointer; transition: all .2s; font-family: 'DM Sans', sans-serif;
+  }
+  .track-tab.active { border-color: var(--accent); color: var(--accent); background: rgba(0,229,192,.06); }
+
+  /* ─── OUTCOMES ─── */
+  .outcome-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .outcome-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center;
+  }
+  .outcome-num { font-family: 'Syne',sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--white); }
+  .outcome-num span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .outcome-desc { font-size: .82rem; color: var(--muted); margin-top: .4rem; }
+
+  /* STICKY CTA */
+  .sticky-bar {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
+    background: rgba(12,15,26,.95); backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border);
+    padding: .9rem 4%; display: flex; justify-content: space-between; align-items: center;
+    transform: translateY(100%); transition: transform .3s;
+  }
+  .sticky-bar.show { transform: translateY(0); }
+  .sticky-bar p { font-size: .88rem; color: var(--text); font-weight: 500; }
+  .sticky-bar p span { color: var(--accent); font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Intelli<span>Bridge</span></div>
+  <ul class="nav-links">
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#curriculum">Curriculum</a></li>
+    <li><a href="#mentors">Mentors</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <div class="nav-ctas">
+    <a href="http://business.intellibridge.in/" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Corporate Training</a>
+    <a href="#" class="btn btn-ghost">Login</a>
+    <a href="#apply" class="btn btn-primary">Apply Now →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> Industry-Led Bootcamps · Cohort 5 Starting Soon</div>
+    <h1>Become a <em>Data & AI</em><br>Professional in 16 Weeks</h1>
+    <p class="hero-sub">Hands-on, mentor-led programs in Data Science, Data Engineering, Business Intelligence, AI and Automation — built for real-world career outcomes across every industry.</p>
+    <div class="hero-ctas">
+      <a href="#apply" class="btn btn-primary btn-lg">Apply for Next Cohort →</a>
+      <a href="#programs" class="btn btn-outline btn-lg">Explore Programs</a>
+    </div>
+    <p class="cohort-tag">🗓️ Cohort 5 starts <strong>15 June 2025</strong> · Limited seats</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">1,200+</div><div class="stat-label">Professionals Placed</div></div>
+      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Specialisation Tracks</div></div>
+      <div class="stat"><div class="stat-num">97%</div><div class="stat-label">Satisfaction Rate</div></div>
+      <div class="stat"><div class="stat-num">40+</div><div class="stat-label">Industry SMEs</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<div class="logos">
+  <p>Alumni now working at</p>
+  <div class="logo-row">
+    <span class="logo-pill">Deloitte</span>
+    <span class="logo-pill">EY</span>
+    <span class="logo-pill">Infosys</span>
+    <span class="logo-pill">TCS</span>
+    <span class="logo-pill">KPMG</span>
+    <span class="logo-pill">Accenture</span>
+    <span class="logo-pill">Wipro</span>
+    <span class="logo-pill">HDFC Bank</span>
+    <span class="logo-pill">Zomato</span>
+    <span class="logo-pill">Flipkart</span>
+  </div>
+</div>
+
+<!-- PROGRAMS -->
+<section class="programs" id="programs">
+  <div class="container">
+    <div class="section-label">Our Programs</div>
+    <h2>5 Focused Tracks.<br><em>Infinite Career Possibilities.</em></h2>
+    <p class="section-sub">Each track is independently crafted by practitioners, aligned to industry hiring needs — not generic curricula.</p>
+    <div class="program-grid">
+
+      <div class="program-card">
+        <div class="prog-icon">📊</div>
+        <span class="prog-tag tag-ds">Data Science</span>
+        <h3>Data Science & Machine Learning</h3>
+        <p>From Python fundamentals to production ML models. Build real projects in healthcare, finance, and e-commerce. Land roles as DS, ML Engineer, or Analyst.</p>
+        <div class="prog-meta">
+          <span>⏱ 16 weeks</span>
+          <span>🖥 Live + Async</span>
+          <span>📜 Certificate</span>
+        </div>
+      </div>
+
+      <div class="program-card">
+        <div class="prog-icon">🔧</div>
+        <span class="prog-tag tag-de">Data Engineering</span>
+        <h3>Data Engineering & Pipelines</h3>
+        <p>Master Spark, dbt, Airflow, and cloud data stacks (AWS/GCP/Azure). Build scalable pipelines. Target DE, Analytics Engineer and Platform roles.</p>
+        <div class="prog-meta">
+          <span>⏱ 14 weeks</span>
+          <span>🖥 Live + Async</span>
+          <span>📜 Certificate</span>
+        </div>
+      </div>
+
+      <div class="program-card">
+        <div class="prog-icon">📈</div>
+        <span class="prog-tag tag-bi">Business Intelligence</span>
+        <h3>Business Intelligence & Analytics</h3>
+        <p>SQL, Power BI, Tableau, and storytelling with data. Become the person who translates numbers into strategic decisions for leadership teams.</p>
+        <div class="prog-meta">
+          <span>⏱ 12 weeks</span>
+          <span>🖥 Live + Async</span>
+          <span>📜 Certificate</span>
+        </div>
+      </div>
+
+      <div class="program-card">
+        <div class="prog-icon">🤖</div>
+        <span class="prog-tag tag-ai">AI & GenAI</span>
+        <h3>Applied AI & Generative AI</h3>
+        <p>LLMs, RAG, prompt engineering, agents, and AI product thinking. Build GenAI applications across industries and position yourself for the AI economy.</p>
+        <div class="prog-meta">
+          <span>⏱ 14 weeks</span>
+          <span>🖥 Live + Async</span>
+          <span>📜 Certificate</span>
+        </div>
+      </div>
+
+      <div class="program-card">
+        <div class="prog-icon">⚙️</div>
+        <span class="prog-tag tag-auto">Automation</span>
+        <h3>AI-Powered Process Automation</h3>
+        <p>RPA, no-code/low-code automation, Python scripting, and intelligent workflow design. Automate operations across BFSI, logistics, HR, and manufacturing.</p>
+        <div class="prog-meta">
+          <span>⏱ 10 weeks</span>
+          <span>🖥 Live + Async</span>
+          <span>📜 Certificate</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section style="background:var(--bg);" id="outcomes">
+  <div class="container">
+    <div class="section-label">Outcomes</div>
+    <h2>Real results.<br><em>Real careers.</em></h2>
+    <p class="section-sub">Our learners don't just finish a course. They switch careers, get promoted, or land their first data role — often within 3 months of graduating.</p>
+    <div class="outcome-grid">
+      <div class="outcome-card"><div class="outcome-num"><span>87%</span></div><div class="outcome-desc">Get a new role or promotion within 6 months</div></div>
+      <div class="outcome-card"><div class="outcome-num"><span>₹8L+</span></div><div class="outcome-desc">Average salary hike for career switchers</div></div>
+      <div class="outcome-card"><div class="outcome-num"><span>16 wks</span></div><div class="outcome-desc">Average time from enrolment to first offer</div></div>
+      <div class="outcome-card"><div class="outcome-num"><span>40+</span></div><div class="outcome-desc">Hiring partner companies actively recruiting</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section style="background:var(--bg2);" id="why">
+  <div class="container">
+    <div class="section-label">The IntelliBridge Difference</div>
+    <h2>Why 1,200+ professionals<br><em>chose IntelliBridge</em></h2>
+    <p class="section-sub">Not all bootcamps are equal. See exactly what sets us apart from generic online courses and mass-market platforms.</p>
+    <div style="overflow-x:auto; border:1px solid var(--border); border-radius:14px;">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>What You Get</th>
+            <th>Generic Platforms</th>
+            <th class="col-head-ib">IntelliBridge ✦</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>👨‍🏫 Instructors</td>
+            <td class="col-others"><span class="cross">✗</span> Academics or retired professionals</td>
+            <td class="col-ib"><span class="tick">✓</span> Active practitioners with 10+ yrs</td>
+          </tr>
+          <tr>
+            <td>🏭 Industry Focus</td>
+            <td class="col-others"><span class="cross">✗</span> Generic tech examples</td>
+            <td class="col-ib"><span class="tick">✓</span> BFSI, healthcare, retail, logistics & more</td>
+          </tr>
+          <tr>
+            <td>🛠 Projects</td>
+            <td class="col-others"><span class="cross">✗</span> 1 toy project</td>
+            <td class="col-ib"><span class="tick">✓</span> 6 industry-grade portfolio projects</td>
+          </tr>
+          <tr>
+            <td>🎯 1:1 Mentorship</td>
+            <td class="col-others"><span class="cross">✗</span> Unavailable or paid add-on</td>
+            <td class="col-ib"><span class="tick">✓</span> Unlimited 1:1 calls included</td>
+          </tr>
+          <tr>
+            <td>💼 Career Support</td>
+            <td class="col-others"><span class="cross">✗</span> Generic job board</td>
+            <td class="col-ib"><span class="tick">✓</span> Resume, mock interviews, referrals</td>
+          </tr>
+          <tr>
+            <td>⏳ Post-Graduation</td>
+            <td class="col-others"><span class="cross">✗</span> Access cut off</td>
+            <td class="col-ib"><span class="tick">✓</span> 2 years community + office hours</td>
+          </tr>
+          <tr>
+            <td>🏢 Cohort Format</td>
+            <td class="col-others"><span class="cross">✗</span> Self-paced, alone</td>
+            <td class="col-ib"><span class="tick">✓</span> Live cohort with peer accountability</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section style="background:var(--bg);" id="curriculum">
+  <div class="container">
+    <div class="section-label">Curriculum Snapshot</div>
+    <h2>16 weeks of <em>real-world learning</em></h2>
+    <p class="section-sub">Here's a taste of what you'll cover in our flagship Data Science track. Every other track follows the same depth-first, project-first philosophy.</p>
+    <div class="track-tabs">
+      <button class="track-tab active">Data Science</button>
+      <button class="track-tab">Data Engineering</button>
+      <button class="track-tab">BI & Analytics</button>
+      <button class="track-tab">AI & GenAI</button>
+      <button class="track-tab">Automation</button>
+    </div>
+    <div class="curriculum-wrap">
+      <div class="week-card">
+        <div class="week-num">Weeks 1–2</div>
+        <h4>Python & Statistics Foundations</h4>
+        <ul class="week-topics">
+          <li>Python for data — pandas, numpy, matplotlib</li>
+          <li>Descriptive and inferential statistics</li>
+          <li>Hypothesis testing and confidence intervals</li>
+          <li>Exploratory Data Analysis (EDA) hands-on</li>
+        </ul>
+      </div>
+      <div class="week-card">
+        <div class="week-num">Weeks 3–4</div>
+        <h4>SQL & Data Wrangling</h4>
+        <ul class="week-topics">
+          <li>Advanced SQL: window functions, CTEs, optimization</li>
+          <li>Data cleaning and feature engineering</li>
+          <li>Working with real messy datasets</li>
+          <li>Case study: Retail sales pipeline</li>
+        </ul>
+      </div>
+      <div class="week-card">
+        <div class="week-num">Weeks 5–7</div>
+        <h4>Machine Learning Core</h4>
+        <ul class="week-topics">
+          <li>Regression, classification, clustering</li>
+          <li>Model evaluation, cross-validation, tuning</li>
+          <li>Ensemble methods: XGBoost, Random Forest</li>
+          <li>Project: Churn prediction for BFSI</li>
+        </ul>
+      </div>
+      <div class="week-card">
+        <div class="week-num">Weeks 8–10</div>
+        <h4>Deep Learning & NLP</h4>
+        <ul class="week-topics">
+          <li>Neural networks from scratch with PyTorch</li>
+          <li>CNNs for image classification</li>
+          <li>NLP: text classification, sentiment, transformers</li>
+          <li>Project: Healthcare document classifier</li>
+        </ul>
+      </div>
+      <div class="week-card">
+        <div class="week-num">Weeks 11–13</div>
+        <h4>MLOps & Production Systems</h4>
+        <ul class="week-topics">
+          <li>Model deployment with FastAPI & Docker</li>
+          <li>MLflow for experiment tracking</li>
+          <li>CI/CD pipelines for ML</li>
+          <li>Cloud deployment on AWS/GCP</li>
+        </ul>
+      </div>
+      <div class="week-card">
+        <div class="week-num">Weeks 14–16</div>
+        <h4>Capstone + Career Sprint</h4>
+        <ul class="week-topics">
+          <li>Industry-sponsored capstone project</li>
+          <li>Portfolio building and LinkedIn optimisation</li>
+          <li>Mock interviews with working data scientists</li>
+          <li>Job referrals and placement support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENTORS -->
+<section style="background:var(--bg2);" id="mentors">
+  <div class="container">
+    <div class="section-label">Your Mentors</div>
+    <h2>Learn from people<br><em>actually doing the work</em></h2>
+    <p class="section-sub">Every mentor has at least 8 years of hands-on experience in their field. No academics, no theory-only professors.</p>
+    <div class="mentor-grid">
+      <div class="mentor-card">
+        <div class="mentor-avatar">RS</div>
+        <h4>Rahul Sharma</h4>
+        <div class="mentor-title">Lead Data Scientist · Deloitte India</div>
+        <p>10 years building ML systems in banking and insurance. Led teams at Mu Sigma, ZS Associates, and Deloitte.</p>
+        <div class="mentor-exp"><span class="exp-tag">ML</span><span class="exp-tag">BFSI</span><span class="exp-tag">Python</span></div>
+      </div>
+      <div class="mentor-card">
+        <div class="mentor-avatar">PA</div>
+        <h4>Priya Anand</h4>
+        <div class="mentor-title">Senior DE · Flipkart Data Platform</div>
+        <p>Built petabyte-scale pipelines at Flipkart. Former Thoughtworks engineer with deep expertise in Spark and dbt.</p>
+        <div class="mentor-exp"><span class="exp-tag">Spark</span><span class="exp-tag">dbt</span><span class="exp-tag">GCP</span></div>
+      </div>
+      <div class="mentor-card">
+        <div class="mentor-avatar">VK</div>
+        <h4>Vikram Kumar</h4>
+        <div class="mentor-title">Director Analytics · HDFC Life</div>
+        <p>Transformed BI culture at two Fortune 500 companies. Power BI MVP, Tableau expert, and data storytelling coach.</p>
+        <div class="mentor-exp"><span class="exp-tag">Power BI</span><span class="exp-tag">Tableau</span><span class="exp-tag">SQL</span></div>
+      </div>
+      <div class="mentor-card">
+        <div class="mentor-avatar">NA</div>
+        <h4>Neha Arora</h4>
+        <div class="mentor-title">AI Lead · Zomato · Ex-Google Brain</div>
+        <p>Published researcher in LLMs. Built GenAI features at Zomato used by 50M+ users. Teaches AI product thinking.</p>
+        <div class="mentor-exp"><span class="exp-tag">LLMs</span><span class="exp-tag">GenAI</span><span class="exp-tag">Agents</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="background:var(--bg);" id="reviews">
+  <div class="container">
+    <div class="section-label">Alumni Stories</div>
+    <h2>People who <em>made the jump</em></h2>
+    <p class="section-sub">Don't take our word for it. Read what our alumni have to say about their journey.</p>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-quote">"I went from working in supply chain to landing a Data Analyst role at EY in under 5 months. The industry case studies were invaluable — nothing else on the market comes close to that depth."</p>
+        <div class="testi-person">
+          <div class="testi-avatar">AM</div>
+          <div>
+            <div class="testi-name">Anjali Mehta</div>
+            <div class="testi-role">Data Analyst · EY India</div>
+            <span class="testi-badge tag-ds">Supply Chain → Data</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-quote">"The Data Engineering track was hands-down the most practical course I've taken. I was building real Airflow DAGs by week 3. Got 2 offers — picked the one from Infosys."</p>
+        <div class="testi-person">
+          <div class="testi-avatar">SK</div>
+          <div>
+            <div class="testi-name">Siddharth Kumar</div>
+            <div class="testi-role">Data Engineer · Infosys</div>
+            <span class="testi-badge tag-de">Software Dev → DE</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-quote">"The mentors don't just teach tools — they teach you how to think about data problems. That mindset shift is what got me promoted to BI Lead within a year of graduating."</p>
+        <div class="testi-person">
+          <div class="testi-avatar">RP</div>
+          <div>
+            <div class="testi-name">Renu Pillai</div>
+            <div class="testi-role">BI Lead · ICICI Lombard</div>
+            <span class="testi-badge tag-bi">Finance → BI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section style="background:var(--bg2);" id="pricing">
+  <div class="container">
+    <div class="section-label">Invest in Yourself</div>
+    <h2 style="text-align:center">Transparent pricing.<br><em>Flexible payments.</em></h2>
+    <p class="section-sub" style="margin:0 auto 3.5rem; text-align:center">No hidden fees. No upsells. Everything you need to land a data career is included.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-name">BI & Automation Track</div>
+        <div class="price-amt">₹39,999 <span>+ GST</span></div>
+        <div class="price-emi">or ₹4,500/mo with No-Cost EMI</div>
+        <ul class="price-features">
+          <li>12–10 week live cohort</li>
+          <li>4 portfolio projects</li>
+          <li>1:1 mentor sessions</li>
+          <li>Resume & LinkedIn review</li>
+          <li>1 year community access</li>
+          <li>Placement support</li>
+        </ul>
+        <a href="#apply" class="btn btn-outline" style="width:100%;justify-content:center">Apply Now →</a>
+      </div>
+      <div class="price-card featured">
+        <div class="featured-badge">Most Popular</div>
+        <div class="price-name">Data Science / DE / AI Track</div>
+        <div class="price-amt">₹64,999 <span>+ GST</span></div>
+        <div class="price-emi">or ₹7,500/mo with No-Cost EMI</div>
+        <ul class="price-features">
+          <li>14–16 week live cohort</li>
+          <li>6 industry-grade projects + capstone</li>
+          <li>Unlimited 1:1 mentorship</li>
+          <li>Mock interviews (3 sessions)</li>
+          <li>Resume, portfolio & LinkedIn</li>
+          <li>2 years community + office hours</li>
+          <li>Job referral network access</li>
+          <li>Free cohort transfer (once)</li>
+        </ul>
+        <a href="#apply" class="btn btn-primary" style="width:100%;justify-content:center">Apply Now →</a>
+      </div>
+    </div>
+    <p style="text-align:center;color:var(--muted);font-size:.85rem;margin-top:1.5rem;">💡 Ask us about employer reimbursement — many companies cover 100% of the fees.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--bg);" id="faq">
+  <div class="container">
+    <div class="section-label">FAQ</div>
+    <h2 style="margin-bottom:2.5rem">Got questions?<br><em>We've got answers.</em></h2>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <button class="faq-q">What background do I need to join? <span class="faq-icon">+</span></button>
+        <div class="faq-a">No prior data experience is required for the BI & Automation tracks. For Data Science, DE, and AI tracks, basic comfort with spreadsheets or any programming is helpful. We have a pre-course module to get everyone up to speed.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How many hours per week does this require? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Plan for 10–14 hours per week: 4 hours of live sessions on weekends and 6–10 hours of assignments, projects, and reading. It is designed for working professionals.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Are the sessions recorded? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Yes. All live sessions are recorded and available in your dashboard within 24 hours. You can also attend recordings from the previous cohort if you want to fast-track.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What kind of placement support do you offer? <span class="faq-icon">+</span></button>
+        <div class="faq-a">We offer 1:1 resume review, portfolio building, LinkedIn optimisation, structured interview prep with question banks, 3 mock interview sessions, and direct referrals to our 40+ hiring partners. Support continues for 2 years post-graduation.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is there a refund policy? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Yes. We offer a full refund within 10 days of cohort commencement if you are not satisfied. No questions asked. Reach out to hello@intellibridge.in.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I get a certificate? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Yes. You receive a globally verifiable certificate of completion upon finishing all assignments and the capstone project. It includes a QR code for LinkedIn sharing.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner" id="apply">
+  <div class="container">
+    <div class="section-label" style="margin-bottom:.5rem">Start Your Journey</div>
+    <h2>Ready to become a<br><em>Data & AI professional?</em></h2>
+    <p>Join Cohort 5 — starting 15 June 2025. Limited to 40 seats per track.</p>
+    <div class="hero-ctas">
+      <a href="mailto:hello@intellibridge.in" class="btn btn-primary btn-lg">Apply Now →</a>
+      <a href="tel:+916360156124" class="btn btn-outline btn-lg">Book a Call</a>
+    </div>
+    <div class="trust-row">
+      <span class="trust-item">No credit card to apply</span>
+      <span class="trust-item">Free counselling session</span>
+      <span class="trust-item">10-day money-back guarantee</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">Intelli<span>Bridge</span></div>
+        <p>India's leading practitioner-led bootcamp for Data Science, Data Engineering, BI, AI and Automation careers.</p>
+        <div class="social-links" style="margin-top:1rem">
+          <a href="#">in</a>
+          <a href="#">tw</a>
+          <a href="#">yt</a>
+          <a href="#">ig</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Programs</h5>
+        <a href="#">Data Science</a>
+        <a href="#">Data Engineering</a>
+        <a href="#">BI & Analytics</a>
+        <a href="#">AI & GenAI</a>
+        <a href="#">Automation</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#">About Us</a>
+        <a href="#">Mentors</a>
+        <a href="#">Alumni</a>
+        <a href="#">Blog</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="mailto:hello@intellibridge.in">hello@intellibridge.in</a>
+        <a href="tel:+916360156124">+91 63601 56124</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Refund Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 IntelliBridge. All rights reserved. GSTIN: 29XXXXX1234X1ZX</p>
+      <p style="color:var(--muted);font-size:.78rem;">Powered by IntelliBridge Learning Platform</p>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY BAR -->
+<div class="sticky-bar" id="stickyBar">
+  <p>🗓️ Cohort 5 starts <span>15 June 2025</span> · Only 12 seats left</p>
+  <a href="#apply" class="btn btn-primary">Apply Now →</a>
+</div>
+
+<script>
+  // FAQ toggle
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // Sticky bar
+  const stickyBar = document.getElementById('stickyBar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 600) stickyBar.classList.add('show');
+    else stickyBar.classList.remove('show');
+  });
+
+  // Track tabs (visual only)
+  document.querySelectorAll('.track-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.track-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
