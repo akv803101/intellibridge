@@ -53,7 +53,7 @@ export function BlogNav({ active }: Props) {
           </li>
           <li>
             <Link
-              href="/blog"
+              href="/blog/"
               className={`text-[0.9rem] font-medium no-underline transition-colors ${
                 active === 'blog' ? 'text-white' : 'text-gray-400 hover:text-white'
               }`}

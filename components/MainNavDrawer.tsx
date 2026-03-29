@@ -36,7 +36,7 @@ export function MainNavDrawer({ open, onClose, blogActive, homeActions }: Props)
       <nav className="nav-mobile-panel" aria-label="Primary">
         <ul className="nav-mobile-list">
           {MAIN_NAV_ITEMS.map(({ href, label }) => {
-            const isBlog = href === '/blog'
+            const isBlog = href === '/blog/'
             const active = isBlog && blogActive
             return (
               <li key={href}>

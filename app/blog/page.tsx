@@ -23,7 +23,7 @@ interface BlogPostCard {
 }
 
 async function getPosts(): Promise<BlogPostCard[]> {
-  const query = `*[_type == "post"] | order(publishedAt desc) {
+  const query = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
     _id,
     title,
     slug,
@@ -95,7 +95,7 @@ export default async function BlogPage() {
               <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {posts.map((post) => {
                   const slug = post.slug?.current
-                  const href = slug ? `/blog/${slug}` : '#'
+                  const href = slug ? `/blog/${slug}/` : '#'
                   const cats = (post.categoryTitles || []).filter(Boolean)
                   return (
                     <article

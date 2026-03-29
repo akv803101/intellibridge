@@ -190,7 +190,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
           <div className="mt-12 border-t border-gray-200 pt-8">
             <Link
-              href="/blog"
+              href="/blog/"
               className="inline-flex items-center font-semibold text-teal-600 no-underline transition-colors hover:text-teal-700"
             >
               <span className="mr-2">←</span> Back to All Posts

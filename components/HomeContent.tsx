@@ -84,7 +84,7 @@ export function HomeContent() {
   <ul className="nav-links">
     {MAIN_NAV_ITEMS.map(({ href, label }) => (
       <li key={href}>
-        {href === '/blog' ? (
+        {href === '/blog/' ? (
           <Link href={href}>{label}</Link>
         ) : (
           <a href={href}>{label}</a>
@@ -574,7 +574,7 @@ export function HomeContent() {
         <a href="#">About Us</a>
         <a href="#">Mentors</a>
         <a href="#">Alumni</a>
-        <Link href="/blog">Blog</Link>
+        <Link href="/blog/">Blog</Link>
         <a href="#">Careers</a>
       </div>
       <div className="footer-col">

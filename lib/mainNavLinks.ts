@@ -5,5 +5,5 @@ export const MAIN_NAV_ITEMS = [
   { href: '/#mentors', label: 'Mentors' },
   { href: '/#reviews', label: 'Reviews' },
   { href: '/#pricing', label: 'Pricing' },
-  { href: '/blog', label: 'Blog' },
+  { href: '/blog/', label: 'Blog' },
 ] as const
