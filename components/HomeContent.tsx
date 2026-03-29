@@ -120,7 +120,7 @@ export function HomeContent() {
       </button>
       <a href="#programs" className="btn btn-outline btn-lg">Explore Programs</a>
     </div>
-    <p className="cohort-tag">🗓️ Cohort 5 starts <strong>15 June 2025</strong> · Limited seats</p>
+    <p className="cohort-tag">🗓️ Cohort 5 starts from <strong>15 June 2026</strong> · Limited seats</p>
     <div className="hero-stats">
       <div className="stat"><div className="stat-num">1,200+</div><div className="stat-label">Professionals Placed</div></div>
       <div className="stat"><div className="stat-num">5</div><div className="stat-label">Specialisation Tracks</div></div>
@@ -532,7 +532,7 @@ export function HomeContent() {
       Start Your Journey
     </div>
     <h2>Ready to become a<br /><em>Data & AI professional?</em></h2>
-    <p>Join Cohort 5 — starting 15 June 2025. Limited to 40 seats per track.</p>
+    <p>Join Cohort 5 — starts from 15 June 2026. Limited to 40 seats per track.</p>
     <div className="hero-ctas">
       <button type="button" className="btn btn-primary btn-lg" onClick={() => setApplyOpen(true)}>
         Apply Now →
@@ -595,7 +595,7 @@ export function HomeContent() {
 
 
 <div className="sticky-bar" id="stickyBar">
-  <p>🗓️ Cohort 5 starts <span>15 June 2025</span> · Only 12 seats left</p>
+  <p>🗓️ Cohort 5 starts from <span>15 June 2026</span> · Only 12 seats left</p>
   <button type="button" className="btn btn-primary" onClick={() => setApplyOpen(true)}>
     Apply Now →
   </button>
