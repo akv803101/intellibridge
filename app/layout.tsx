@@ -13,9 +13,9 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://intellibridge.in'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'IntelliBridge — Become a Data & AI Professional',
+  title: 'IntelliBridge — Learn Data & AI. Build. Consult.',
   description:
-    'Hands-on, mentor-led programs in Data Science, Data Engineering, Business Intelligence, AI and Automation.',
+    "India's practitioner-led bootcamp for Data & AI — technical tracks plus a consulting path to scope, price, and deliver for real clients.",
 }
 
 export const viewport: Viewport = {

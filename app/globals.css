@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --bg: #06080f;
+    --bg: #06080f;
     --bg2: #0c0f1a;
     --bg3: #111627;
     --card: #141929;
@@ -11,6 +11,8 @@
     --accent: #00e5c0;
     --accent2: #7b6cff;
     --accent3: #ff6b6b;
+    --gold: #ffc857;
+    --gold-dim: rgba(255, 200, 87, 0.12);
     --text: #e8eaf0;
     --muted: #7a82a0;
     --white: #ffffff;
@@ -532,6 +534,137 @@
   .outcome-num { font-family: var(--font-jakarta), system-ui, sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--white); }
   .outcome-num span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .outcome-desc { font-size: .82rem; color: var(--muted); margin-top: .4rem; }
+
+  /* ─── DUAL CAREER PATHS ─── */
+  .dual-path {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  @media (max-width: 700px) {
+    .dual-path { grid-template-columns: 1fr; }
+  }
+  .path-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color .25s;
+  }
+  .path-card:hover { border-color: rgba(0,229,192,.35); }
+  .path-card--consulting { border-color: rgba(255,200,87,.2); }
+  .path-card--consulting:hover { border-color: rgba(255,200,87,.4); }
+  .path-new {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: .62rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #000;
+    background: var(--gold);
+    padding: .2rem .65rem;
+    border-radius: 4px;
+  }
+  .path-icon { font-size: 1.75rem; margin-bottom: 1rem; }
+  .path-card h3 {
+    font-family: var(--font-jakarta), system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--white);
+    margin-bottom: .5rem;
+  }
+  .path-card > p { font-size: .88rem; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; }
+  .path-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .path-tag {
+    font-size: .68rem;
+    font-weight: 600;
+    padding: .25rem .6rem;
+    border-radius: 6px;
+    background: rgba(0,229,192,.1);
+    color: var(--accent);
+    border: 1px solid rgba(0,229,192,.25);
+  }
+  .path-card--consulting .path-tag {
+    background: var(--gold-dim);
+    color: var(--gold);
+    border-color: rgba(255,200,87,.28);
+  }
+
+  /* ─── CONSULTING WEBINAR GRID ─── */
+  .webinar-section { background: var(--bg2); }
+  .web-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: .9rem;
+  }
+  @media (max-width: 700px) {
+    .web-grid { grid-template-columns: 1fr; }
+  }
+  .web-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.25rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: border-color .25s;
+  }
+  .web-card:hover { border-color: rgba(0,229,192,.3); }
+  .web-num {
+    font-family: var(--font-jakarta), system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--accent);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 2rem;
+  }
+  .web-card h4 {
+    font-family: var(--font-jakarta), system-ui, sans-serif;
+    font-weight: 700;
+    font-size: .9rem;
+    color: var(--white);
+    margin-bottom: .25rem;
+  }
+  .web-card p { font-size: .78rem; color: var(--muted); line-height: 1.55; margin: 0; }
+
+  .program-card.program-highlight {
+    border-color: rgba(255,200,87,.45);
+    background: linear-gradient(135deg, var(--card), var(--gold-dim));
+  }
+  .prog-badge-new {
+    display: inline-block;
+    font-size: .62rem;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #000;
+    background: var(--gold);
+    padding: .15rem .5rem;
+    border-radius: 3px;
+    margin-bottom: .65rem;
+  }
+
+  .price-card.price-new-track {
+    border-color: rgba(255,200,87,.45);
+    box-shadow: 0 0 0 1px rgba(255,200,87,.15);
+  }
+  .price-card.price-new-track .price-emi { color: var(--gold); }
+  .btn-outline-gold {
+    background: transparent;
+    border: 1.5px solid var(--gold);
+    color: var(--gold);
+  }
+  .btn-outline-gold:hover {
+    background: rgba(255,200,87,.1);
+    color: var(--gold);
+  }
 
   /* STICKY CTA */
   .sticky-bar {

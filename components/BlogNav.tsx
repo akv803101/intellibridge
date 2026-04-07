@@ -32,18 +32,26 @@ export function BlogNav({ active }: Props) {
         </div>
         <ul className="m-0 hidden min-w-0 flex-1 list-none items-center justify-center gap-6 p-0 md:flex lg:gap-8">
           <li>
+            <Link href="/#paths" className="text-[0.9rem] font-medium text-gray-400 no-underline transition-colors hover:text-white">
+              Paths
+            </Link>
+          </li>
+          <li>
             <Link href="/#programs" className="text-[0.9rem] font-medium text-gray-400 no-underline transition-colors hover:text-white">
               Programs
             </Link>
           </li>
           <li>
-            <Link href="/#curriculum" className="text-[0.9rem] font-medium text-gray-400 no-underline transition-colors hover:text-white">
-              Curriculum
+            <Link
+              href="/#consulting-webinars"
+              className="text-[0.9rem] font-medium text-gray-400 no-underline transition-colors hover:text-white"
+            >
+              Consulting
             </Link>
           </li>
           <li>
-            <Link href="/#mentors" className="text-[0.9rem] font-medium text-gray-400 no-underline transition-colors hover:text-white">
-              Mentors
+            <Link href="/#outcomes" className="text-[0.9rem] font-medium text-gray-400 no-underline transition-colors hover:text-white">
+              Outcomes
             </Link>
           </li>
           <li>

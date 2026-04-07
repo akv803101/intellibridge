@@ -292,6 +292,7 @@ export function ApplyModal({ open, onClose }: { open: boolean; onClose: () => vo
                     <option value="BI & Analytics">BI & Analytics</option>
                     <option value="AI & GenAI">AI & GenAI</option>
                     <option value="Automation">Automation</option>
+                    <option value="Data & AI Consulting">Data & AI Consulting</option>
                     <option value="Not sure yet">Not sure yet</option>
                   </select>
                   <span className="errmsg">Please select a track</span>
