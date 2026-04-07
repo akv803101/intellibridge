@@ -241,7 +241,11 @@ export function HomeContent() {
         </div>
       </div>
 
-      <div className="program-card program-highlight">
+      <Link
+        href="/consulting-webinar-blueprint/"
+        className="program-card program-highlight program-card--link"
+        aria-label="Data & AI Consulting — open 15-episode webinar blueprint"
+      >
         <div className="prog-badge-new">NEW TRACK</div>
         <div className="prog-icon">💼</div>
         <span className="prog-tag tag-ai">Consulting</span>
@@ -254,7 +258,7 @@ export function HomeContent() {
           <span>⏱ 10 weeks</span>
           <span>🖥 Live Webinars</span>
         </div>
-      </div>
+      </Link>
     </div>
   </div>
 </section>

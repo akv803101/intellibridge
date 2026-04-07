@@ -638,6 +638,26 @@
     border-color: rgba(255,200,87,.45);
     background: linear-gradient(135deg, var(--card), var(--gold-dim));
   }
+  a.program-card--link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  a.program-card--link:focus-visible {
+    outline: 2px solid rgba(0, 229, 192, 0.65);
+    outline-offset: 3px;
+  }
+
+  /* Full-bleed embed for /consulting-webinar-blueprint/ */
+  .consulting-blueprint-frame {
+    display: block;
+    width: 100%;
+    height: 100dvh;
+    min-height: 100vh;
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
   .prog-badge-new {
     display: inline-block;
     font-size: .62rem;

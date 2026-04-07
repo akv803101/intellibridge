@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IntelliBridge — 15-Episode Consulting Webinar Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#07080b;
+  --bg2:#0d0f15;
+  --s1:#12151e;
+  --s2:#181c28;
+  --s3:#212636;
+  --mint:#2df4b2;
+  --mint8:rgba(45,244,178,.08);
+  --mint15:rgba(45,244,178,.15);
+  --mint30:rgba(45,244,178,.30);
+  --gold:#ffc857;
+  --gold8:rgba(255,200,87,.08);
+  --gold20:rgba(255,200,87,.20);
+  --coral:#ff6b6b;
+  --coral8:rgba(255,107,107,.08);
+  --sky:#6bc5ff;
+  --sky8:rgba(107,197,255,.08);
+  --lav:#b39dff;
+  --lav8:rgba(179,157,255,.08);
+  --peach:#ffb088;
+  --peach8:rgba(255,176,136,.08);
+  --t1:#eaecf0;
+  --t2:#9ca3b8;
+  --t3:#636a80;
+  --border:#1e2233;
+  --r:14px;
+  --font-sans:'Plus Jakarta Sans',system-ui,sans-serif;
+  --grad:linear-gradient(135deg,#00e5c0 0%,#7b6cff 100%);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--t1);line-height:1.7;-webkit-font-smoothing:antialiased}
+
+.wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+
+/* HEADER */
+.header{text-align:center;padding:72px 24px 64px;position:relative}
+.header::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:80px;height:2px;background:var(--mint);border-radius:1px}
+.badge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);background:var(--gold8);border:1px solid var(--gold20);padding:6px 18px;border-radius:100px;margin-bottom:24px}
+h1{font-family:var(--font-sans);font-size:clamp(32px,5vw,52px);font-weight:800;line-height:1.12;letter-spacing:-0.04em;margin-bottom:16px;color:var(--t1)}
+h1 em{font-style:normal;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header p{font-size:17px;color:var(--t2);max-width:640px;margin:0 auto}
+
+/* SECTIONS */
+.sec{padding:64px 0}
+.sec-label{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--mint);margin-bottom:8px}
+h2{font-family:var(--font-sans);font-size:clamp(26px,4vw,38px);font-weight:800;line-height:1.15;letter-spacing:-0.03em;margin-bottom:14px;color:var(--t1)}
+h2 em{font-style:normal;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-sub{font-size:15px;color:var(--t2);max-width:620px;margin-bottom:40px}
+p{color:var(--t2);font-size:15px;margin-bottom:12px}
+strong{color:var(--t1);font-weight:600}
+
+/* USE CASE CARD */
+.usecase{
+  background:linear-gradient(135deg,var(--s1),var(--gold8));
+  border:1px solid var(--gold20);
+  border-radius:var(--r);
+  padding:36px;
+  margin-bottom:48px;
+  display:grid;grid-template-columns:auto 1fr;gap:24px;
+  align-items:start;
+}
+@media(max-width:600px){.usecase{grid-template-columns:1fr}}
+.usecase-icon{font-size:48px;line-height:1}
+.usecase h3{font-size:20px;font-weight:700;margin-bottom:6px;color:var(--gold)}
+.usecase p{font-size:14px;margin-bottom:8px}
+.usecase .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.usecase .tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px;background:var(--gold8);color:var(--gold);border:1px solid var(--gold20)}
+
+/* PHASE BLOCKS */
+.phase{margin-bottom:56px}
+.phase-header{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:24px;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--border);
+}
+.phase-num{
+  width:44px;height:44px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-sans);font-size:20px;font-weight:800;
+  flex-shrink:0;
+}
+.p1 .phase-num{background:var(--mint8);color:var(--mint);border:1px solid var(--mint15)}
+.p2 .phase-num{background:var(--sky8);color:var(--sky);border:1px solid rgba(107,197,255,.2)}
+.p3 .phase-num{background:var(--lav8);color:var(--lav);border:1px solid rgba(179,157,255,.2)}
+.p4 .phase-num{background:var(--peach8);color:var(--peach);border:1px solid rgba(255,176,136,.2)}
+.p5 .phase-num{background:var(--gold8);color:var(--gold);border:1px solid var(--gold20)}
+.phase-header h3{font-size:20px;font-weight:700}
+.phase-header .phase-desc{font-size:13px;color:var(--t3);margin-top:2px}
+
+/* EPISODE CARDS */
+.ep-card{
+  background:var(--s1);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  padding:28px;
+  margin-bottom:14px;
+  transition:border-color .3s;
+}
+.ep-card:hover{border-color:var(--mint15)}
+.ep-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px}
+.ep-badge{
+  font-size:11px;font-weight:800;letter-spacing:1px;
+  color:var(--bg);background:var(--mint);
+  padding:3px 10px;border-radius:5px;
+  flex-shrink:0;margin-top:2px;
+}
+.ep-title{font-size:18px;font-weight:700;line-height:1.3}
+.ep-body{padding-left:0}
+.ep-row{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  margin-top:16px;
+}
+@media(max-width:640px){.ep-row{grid-template-columns:1fr}}
+.ep-block{
+  background:var(--s2);
+  border-radius:10px;
+  padding:18px;
+}
+.ep-block-label{
+  font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+  margin-bottom:8px;
+}
+.lb-mint{color:var(--mint)}
+.lb-gold{color:var(--gold)}
+.lb-sky{color:var(--sky)}
+.lb-lav{color:var(--lav)}
+.lb-coral{color:var(--coral)}
+.lb-peach{color:var(--peach)}
+.ep-block ul{list-style:none}
+.ep-block ul li{
+  font-size:13px;color:var(--t2);
+  padding:3px 0;
+  display:flex;align-items:flex-start;gap:8px;
+}
+.ep-block ul li::before{content:'→';color:var(--t3);flex-shrink:0}
+.ep-meta{
+  display:flex;gap:18px;margin-top:16px;
+  font-size:12px;color:var(--t3);
+  flex-wrap:wrap;
+}
+.ep-meta span{display:flex;align-items:center;gap:4px}
+.deliverable-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:700;
+  color:var(--gold);
+  background:var(--gold8);
+  border:1px solid var(--gold20);
+  padding:4px 12px;border-radius:6px;
+  margin-top:14px;
+}
+
+/* TIMELINE OVERVIEW */
+.timeline-bar{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  gap:3px;margin-bottom:48px;border-radius:10px;overflow:hidden;
+}
+@media(max-width:600px){.timeline-bar{grid-template-columns:1fr}}
+.tbar{padding:18px 14px;text-align:center}
+.tbar .tnum{font-family:var(--font-sans);font-size:22px;font-weight:800;margin-bottom:2px}
+.tbar .tlabel{font-size:11px;font-weight:600;letter-spacing:.5px}
+.tb1{background:var(--mint8);color:var(--mint)}
+.tb2{background:var(--sky8);color:var(--sky)}
+.tb3{background:var(--lav8);color:var(--lav)}
+.tb4{background:var(--peach8);color:var(--peach)}
+.tb5{background:var(--gold8);color:var(--gold)}
+
+/* SUMMARY TABLE */
+.sum-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:20px}
+.sum-table th{
+  text-align:left;padding:12px 14px;
+  background:var(--s1);color:var(--mint);
+  font-weight:700;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  border-bottom:2px solid var(--mint);
+}
+.sum-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--t2);vertical-align:top}
+.sum-table tr:hover td{background:var(--s1)}
+.sum-table .epnum{color:var(--mint);font-weight:700}
+
+/* CALLOUT */
+.callout{
+  background:linear-gradient(135deg,var(--mint8),var(--s1));
+  border:1px solid var(--mint15);
+  border-radius:var(--r);
+  padding:40px;
+  text-align:center;
+  margin-top:48px;
+}
+.callout h3{font-family:var(--font-sans);font-size:22px;font-weight:800;letter-spacing:-0.03em;margin-bottom:10px;color:var(--t1)}
+.callout p{font-size:14px;max-width:600px;margin:0 auto}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="badge">Webinar Strategy — 15 Episodes</div>
+  <h1>The Complete <em>AI Consulting</em><br>Webinar Blueprint</h1>
+  <p>A start-to-finish consulting simulation across 15 episodes. One running use case. From understanding the business to delivering the final solution — exactly how real consulting works.</p>
+</div>
+
+<div class="wrap">
+
+<!-- PHILOSOPHY -->
+<div class="sec">
+  <div class="sec-label">Design Philosophy</div>
+  <h2>Why this is <em>radically different</em></h2>
+  <p>Every other webinar series teaches tools in isolation — "here's how to use Power BI," "here's how to build an LLM app." IntelliBridge's consulting series is structured as a <strong>single end-to-end consulting engagement</strong> that unfolds over 15 episodes.</p>
+  <p>Learners don't just watch — they <strong>role-play as the consultant</strong>. They receive a client brief, run discovery calls, procure and clean data, build solutions, and present to stakeholders. By the end, they have a complete consulting case study in their portfolio — not a certificate, but proof they can do the job.</p>
+  <p>The series follows the real consulting lifecycle used by firms like Deloitte, EY, and McKinsey — adapted for solo/freelance consultants working with Indian SMEs and startups.</p>
+</div>
+
+<!-- RUNNING USE CASE -->
+<div class="usecase">
+  <div class="usecase-icon">🛍️</div>
+  <div>
+    <h3>Running Use Case: GlowKart</h3>
+    <p>GlowKart is a fictional Indian D2C beauty brand doing ₹8Cr ARR. They sell via Shopify + Amazon India + their own app. They've raised Series A and their investors want data-driven growth — but the founder has no analytics team. <strong>They've hired you as their first Data & AI consultant.</strong></p>
+    <p>Across 15 episodes, you'll take GlowKart from zero data maturity to a fully operational analytics + AI stack — dashboards, customer segmentation, demand forecasting, AI chatbot, and executive reporting. The datasets, Slack messages, emails, and stakeholder profiles are all pre-built for realistic simulation.</p>
+    <div class="tags">
+      <span class="tag">D2C / E-commerce</span>
+      <span class="tag">₹8Cr ARR</span>
+      <span class="tag">Shopify + Amazon</span>
+      <span class="tag">Series A</span>
+      <span class="tag">No data team</span>
+      <span class="tag">Indian market</span>
+    </div>
+  </div>
+</div>
+
+<!-- TIMELINE BAR -->
+<div class="sec-label">Journey Map</div>
+<h2>5 Phases. 15 Episodes. <em>One engagement.</em></h2>
+<p class="sec-sub">Each phase mirrors a stage of a real consulting project — the exact sequence a working consultant follows.</p>
+
+<div class="timeline-bar">
+  <div class="tbar tb1"><div class="tnum">1–3</div><div class="tlabel">Discovery & Scoping</div></div>
+  <div class="tbar tb2"><div class="tnum">4–6</div><div class="tlabel">Data Procurement</div></div>
+  <div class="tbar tb3"><div class="tnum">7–10</div><div class="tlabel">Solution Build</div></div>
+  <div class="tbar tb4"><div class="tnum">11–13</div><div class="tlabel">Delivery & Handoff</div></div>
+  <div class="tbar tb5"><div class="tnum">14–15</div><div class="tlabel">Scale Your Practice</div></div>
+</div>
+
+<!-- ==================== PHASE 1 ==================== -->
+<div class="phase p1">
+  <div class="phase-header">
+    <div class="phase-num">I</div>
+    <div>
+      <h3>Phase 1 — Discovery & Scoping</h3>
+      <div class="phase-desc">Episodes 1–3 · Before you touch any data, you need to understand the business</div>
+    </div>
+  </div>
+
+  <!-- EP 1 -->
+  <div class="ep-card">
+    <div class="ep-top">
+      <div class="ep-badge">EP 01</div>
+      <div class="ep-title">The AI Consulting Landscape & Your First Client Call</div>
+    </div>
+    <p>Set the stage: what does a Data & AI consultant actually do? How is it different from being a Data Scientist employee? Then simulate your very first "discovery call" with GlowKart's founder — learning to ask the right questions, not jump to solutions.</p>
+    <div class="ep-row">
+      <div class="ep-block">
+        <div class="ep-block-label lb-mint">What You'll Learn</div>
+        <ul>
+          <li>AI consulting market in India — size, demand, salary bands (₹15L–40L+)</li>
+          <li>Freelance vs embedded vs agency models — pros/cons of each</li>
+          <li>The consulting mindset: "problems first, tools later"</li>
+          <li>How to run a discovery call — the 12 questions that matter</li>
+          <li>Reading between the lines: what the client says vs what they need</li>
+        </ul>
+      </div>
+      <div class="ep-block">
+        <div class="ep-block-label lb-gold">Live Exercise</div>
+        <ul>
+          <li>Role-play: "Discovery call with GlowKart founder Priya Mehra"</li>
+          <li>Pre-recorded video of Priya describing her problems (actors/script)</li>
+          <li>Learners take notes, identify pain points, flag red flags</li>
+          <li>Group debrief: what did you catch? What did you miss?</li>
+        </ul>
+      </div>
+    </div>
+    <div class="deliverable-tag">📄 Deliverable: Discovery Call Notes Template + GlowKart Pain Point Map</div>
+    <div class="ep-meta">
+      <span>⏱ 90 min</span>
+      <span>🎯 Beginner-friendly</span>
+      <span>📍 No technical pre-req</span>
+    </div>
+  </div>
+
+  <!-- EP 2 -->
+  <div class="ep-card">
+    <div class="ep-top">
+      <div class="ep-badge">EP 02</div>
+      <div class="ep-title">Understanding the Business: Metrics, KPIs & Data Maturity</div>
+    </div>
+    <p>Before you propose any solution, you need to understand how GlowKart makes money. Dive into D2C unit economics, key metrics (CAC, LTV, AOV, repeat rate), and assess their current data maturity level using a structured framework.</p>
+    <div class="ep-row">
+      <div class="ep-block">
+        <div class="ep-block-label lb-mint">What You'll Learn</div>
+        <ul>
+          <li>D2C business model deep-dive: how Indian D2C brands work</li>
+          <li>Key metrics every consultant must know: CAC, LTV, AOV, contribution margin</li>
+          <li>Data Maturity Assessment Framework (5-level model)</li>
+          <li>Mapping business problems to data solutions</li>
+          <li>Stakeholder mapping: who has influence, who has budget</li>
+        </ul>
+      </div>
+      <div class="ep-block">
+        <div class="ep-block-label lb-gold">Live Exercise</div>
+        <ul>
+          <li>Score GlowKart on the Data Maturity Framework (they'll score ~Level 1.5)</li>
+          <li>Build a stakeholder map: Founder, Marketing Head, Ops Lead, Investor</li>
+          <li>Identify top 3 "quick win" opportunities vs long-term bets</li>
+          <li>Draft: "Here's what I think your top 3 problems are" email to the founder</li>
+        </ul>
+      </div>
+    </div>
+    <div class="deliverable-tag">📄 Deliverable: Data Maturity Scorecard + Problem Prioritization Matrix</div>
+    <div class="ep-meta">
+      <span>⏱ 90 min</span>
+      <span>🎯 Business thinking</span>
+      <span>📍 No code</span>
+    </div>
+  </div>
+
+  <!-- EP 3 -->
+  <div class="ep-card">
+    <div class="ep-top">
+      <div class="ep-badge">EP 03</div>
+      <div class="ep-title">Writing the Proposal: SOW, Pricing & Project Plan</div>
+    </div>
+    <p>Now you convert your discovery into a formal proposal. Learn how to write a Statement of Work (SOW), structure milestones, estimate effort in hours, and price the engagement — with specific guidance on Indian freelance/consulting rates.</p>
+    <div class="ep-row">
+      <div class="ep-block">
+        <div class="ep-block-label lb-mint">What You'll Learn</div>
+        <ul>
+          <li>Anatomy of a consulting SOW: scope, deliverables, timeline, pricing, exclusions</li>
+          <li>Pricing models: fixed-fee vs time & material vs retainer vs value-based</li>
+          <li>Indian market rates: ₹1,500–5,000/hr freelance, ₹2L–10L project-based</li>
+          <li>Milestone-based billing: how to protect yourself and the client</li>
+          <li>Red flags in client conversations that signal scope creep</li>
+          <li>Terms & conditions: payment terms, IP ownership, NDAs for India</li>
+        </ul>
+      </div>
+      <div class="ep-block">
+        <div class="ep-block-label lb-gold">Live Exercise</div>
+        <ul>
+          <li>Write a real SOW for GlowKart — 3-month engagement, 3 phases</li>
+          <li>Phase 1: Data foundation & dashboards (₹1.5L)</li>
+          <li>Phase 2: Customer analytics & segmentation (₹2L)</li>
+          <li>Phase 3: AI chatbot + recommendation engine (₹3L)</li>
+          <li>Peer review: swap SOWs and critique each other's pricing & scope</li>
+        </ul>
+      </div>
+    </div>
+    <div class="deliverable-tag">📄 Deliverable: Complete GlowKart SOW (reusable template) + Pricing Calculator Sheet</div>
+    <div class="ep-meta">
+      <span>⏱ 90 min</span>
+      <span>🎯 Critical consulting skill</span>
+      <span>📍 Google Docs / Notion</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PHASE 2 ==================== -->
+<div class="phase p2">
+  <div class="phase-header">
+    <div class="phase-num">II</div>
+    <div>
+      <h3>Phase 2 — Data Procurement & Foundation</h3>
+      <div class="phase-desc">Episodes 4–6 · The client said yes. Now you need to find, extract, clean, and structure the data.</div>
+    </div>
+  </div>
+
+  <!-- EP 4 -->
+  <div class="ep-card">
+    <div class="ep-top">
+      <div class="ep-badge">EP 04</div>
+      <div class="ep-title">Data Audit: What Exists, What's Missing, What's Broken</div>
+    </div>
+    <p>Your first week at GlowKart. You're given access to their Shopify admin, Google Analytics, a bunch of Google Sheets, and "some data in an Excel file Rahul maintains." This is reality — and your job is to audit what's usable, what's garbage, and what's missing entirely.</p>
+    <div class="ep-row">
+      <div class="ep-block">
+        <div class="ep-block-label lb-mint">What You'll Learn</div>
+        <ul>
+          <li>The Data Audit Framework: sources, schemas, quality, freshness, gaps</li>
+          <li>Common data sources for Indian D2C: Shopify, Razorpay, Shiprocket, Meta Ads, GA4</li>
+          <li>How to interview non-technical teams about their data ("Where does this number come from?")</li>
+          <li>Data quality scoring: completeness, accuracy, consistency, timeliness</li>
+          <li>Creating a Data Catalog from scratch</li>
+        </ul>
+      </div>
+      <div class="ep-block">
+        <div class="ep-block-label lb-gold">Live Exercise</div>
+        <ul>
+          <li>Provided: GlowKart's actual messy data exports (Shopify orders CSV, GA4 export, Meta Ads report, Google Sheets inventory tracker)</li>
+          <li>Audit each source: schema, row counts, missing values, date ranges</li>
+          <li>Build a Data Catalog in a spreadsheet</li>
+          <li>Write a "Data Readiness Report" for the founder: "Here's what we have, here's what we need"</li>
+        </ul>
+      </div>
+    </div>
+    <div class="deliverable-tag">📄 Deliverable: Data Audit Report + Data Catalog Template</div>
+    <div class="ep-meta">
+      <span>⏱ 90 min</span>
+      <span>🎯 Hands-on data work</span>
+      <span>📍 Python / Excel / SQL</span>
+    </div>
+  </div>
+
+  <!-- EP 5 -->
+  <div class="ep-card">
+    <div class="ep-top">
+      <div class="ep-badge">EP 05</div>
+      <div class="ep-title">Data Extraction & Pipeline Design</div>
+    </div>
+    <p>Now that you know what data exists, you need to extract it, centralize it, and build a lightweight pipeline that the client can maintain after you leave. This is where consulting differs from being an employee — you build for handoff, not for yourself.</p>
+    <div class="ep-row">
+      <div class="ep-block">
+        <div class="ep-block-label lb-mint">What You'll Learn</div>
+        <ul>
+          <li>API-based extraction: Shopify REST API, Razorpay API, Meta Marketing API</li>
+          <li>Flat file extraction: CSV exports, Google Sheets API, email-attached reports</li>
+          <li>Designing a "good enough" pipeline for SMEs (not enterprise overkill)</li>
+          <li>Storage options for Indian SMEs: Google BigQuery (free tier), PostgreSQL, Supabase</li>
+          <li>Schema design: star schema basics for analytics</li>
+          <li>Documentation for handoff: the "runbook" concept</li>
+        </ul>
+      </div>
+      <div class="ep-block">
+        <div class="ep-block-label lb-gold">Live Exercise</div>
+        <ul>
+          <li>Extract GlowKart's Shopify orders via API (Python script)</li>
+          <li>Load into a PostgreSQL/BigQuery staging table</li>
+          <li>Build a simple transformation: raw orders → clean fact_orders table</li>
+          <li>Write a 1-page "Data Pipeline Runbook" for GlowKart's ops team</li>
+        </ul>
+      </div>
+    </div>
+    <div class="deliverable-tag">📄 Deliverable: Working Python ETL Script + Pipeline Runbook</div>
+    <div class="ep-meta">
+      <span>⏱ 120 min</span>
+      <span>🎯 Technical depth</span>
+      <span>📍 Python, SQL, APIs</span>
+    </div>
+  </div>
+
+  <!-- EP 6 -->
+  <div class="ep-card">
+    <div class="ep-top">
+      <div class="ep-badge">EP 06</div>
+      <div class="ep-title">Data Cleaning, Transformation & The "Single Source of Truth"</div>
+    </div>
+    <p>GlowKart's data is now centralized — but it's still messy. Duplicate orders, inconsistent product names, missing customer emails, timezone mismatches between Shopify and GA4. Clean it, transform it, and build the single source of truth the whole company will use.</p>
+    <div class="ep-row">
+      <div class="ep-block">
+        <div class="ep-block-label lb-mint">What You'll Learn</div>
+        <ul>
+          <li>Data cleaning patterns: deduplication, null handling, type casting, outlier treatment</li>
+          <li>Joining data across sources: matching Shopify customers with GA4 sessions</li>
+          <li>Building dimension tables: dim_customers, dim_products, dim_dates</li>
+          <li>Creating derived metrics: LTV, cohort labels, RFM scores</li>
+          <li>Data validation: writing assertions and tests (dbt-style thinking)</li>
+          <li>Version control for data: why and how</li>
+        </ul>
+      </div>
+      <div class="ep-block">
+        <div class="ep-block-label lb-gold">Live Exercise</div>
+        <ul>
+          <li>Clean GlowKart's orders data: fix duplicates, standardize product categories</li>
+          <li>Build dim_customers with derived fields (first purchase date, total orders, LTV)</li>
+          <li>Create an RFM segmentation from scratch using SQL</li>
+          <li>Validate: write 5 data quality checks and run them</li>
+        </ul>
+      </div>
+    </div>
+    <div class="deliverable-tag">📄 Deliverable: Clean Analytics Schema + Data Dictionary + RFM Table</div>
+    <div class="ep-meta">
+      <span>⏱ 120 min</span>
+      <span>🎯 Data engineering mindset</span>
+      <span>📍 SQL, Python, dbt concepts</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PHASE 3 ==================== -->
+<div class="phase p3">
+  <div class="phase-header">
+    <div class="phase-num">III</div>
+    <div>
+      <h3>Phase 3 — Solution Build</h3>
+      <div class="phase-desc">Episodes 7–10 · Data is ready. Now build the solutions the client is paying for.</div>
+    </div>
+  </div>
+
+  <!-- EP 7 -->
+  <div class="ep-card">
+    <div class="ep-top">
+      <div class="ep-badge">EP 07</div>
+      <div class="ep-title">Executive Dashboard: The First "Wow" Moment</div>
+    </div>
+    <p>The fastest way to prove value as a consultant is a dashboard the founder checks every morning. Build GlowKart's executive dashboard — revenue, orders, CAC, LTV, top products — with drill-downs for the marketing and ops teams.</p>
+    <div class="ep-row">
+      <div class="ep-block">
+        <div class="ep-block-label lb-mint">What You'll Learn</div>
+        <ul>
+          <li>Dashboard design thinking: what does the CEO need vs what the marketing team needs</li>
+          <li>The "5-second rule" — if the insight isn't obvious in 5 seconds, redesign</li>
+          <li>KPI hierarchy: north star → supporting metrics → diagnostic metrics</li>
+          <li>Power BI or Streamlit: choosing the right tool for the client's team</li>
+          <li>Connecting live data sources to dashboards</li>
+          <li>Mobile-first design for founders who check on their phone</li>
+        </ul>
+      </div>
+      <div class="ep-block">
+        <div class="ep-block-label lb-gold">Live Exercise</div>
+        <ul>
+          <li>Build GlowKart's executive dashboard with: revenue trend, daily orders, CAC by channel, product mix, cohort retention chart</li>
+          <li>Add a marketing view: channel-wise spend vs revenue, ROAS</li>
+          <li>Add an ops view: fulfillment SLA, return rate, inventory alerts</li>
+          <li>Present it as you would to the founder — live practice</li>
+        </ul>
+      </div>
+    </div>
+    <div class="deliverable-tag">📄 Deliverable: Working Dashboard (Power BI / Streamlit) + Dashboard Spec Doc</div>
+    <div class="ep-meta">
+      <span>⏱ 120 min</span>
+      <span>🎯 High-impact delivery</span>
+      <span>📍 Power BI / Streamlit</span>
+    </div>
+  </div>
+
+  <!-- EP 8 -->
+  <div class="ep-card">
+    <div class="ep-top">
+      <div class="ep-badge">EP 08</div>
+      <div class="ep-title">Customer Segmentation & Cohort Analysis</div>
+    </div>
+    <p>GlowKart's marketing head asks: "Who are our best customers? Who should we target for repeat purchases? Who's about to churn?" This is where you go beyond dashboards and deliver analytical insights that directly influence marketing spend.</p>
+    <div class="ep-row">
+      <div class="ep-block">
+        <div class="ep-block-label lb-mint">What You'll Learn</div>
+        <ul>
+          <li>RFM segmentation → actionable customer personas</li>
+          <li>Cohort analysis: monthly cohort retention curves</li>
+          <li>Churn prediction: defining churn for D2C (no subscription = tricky)</li>
+          <li>Building a simple ML model for churn likelihood (logistic regression / XGBoost)</li>
+          <li>Translating model output into business recommendations</li>
+          <li>"So what?" — the consultant's most important question</li>
+        </ul>
+      </div>
+      <div class="ep-block">
+        <div class="ep-block-label lb-gold">Live Exercise</div>
+        <ul>
+          <li>Run RFM segmentation on GlowKart customers → 5 named segments</li>
+          <li>Build cohort retention chart → identify drop-off month</li>
+          <li>Train a churn prediction model → identify top 500 at-risk customers</li>
+          <li>Write a 1-page "Customer Intelligence Brief" for the marketing head</li>
+        </ul>
+      </div>
+    </div>
+    <div class="deliverable-tag">📄 Deliverable: Customer Segments + Churn Model + Intelligence Brief</div>
+    <div class="ep-meta">
+      <span>⏱ 120 min</span>
+      <span>🎯 Analytics + ML</span>
+      <span>📍 Python, Pandas, Scikit-learn</span>
+    </div>
+  </div>
+
+  <!-- EP 9 -->
+  <div class="ep-card">
+    <div class="ep-top">
+      <div class="ep-badge">EP 09</div>
+      <div class="ep-title">Demand Forecasting & Inventory Intelligence</div>
+    </div>
+    <p>GlowKart's ops lead is drowning — overstocking slow SKUs, running out of bestsellers. Build a demand forecasting model and an inventory alert system that saves the company real money. This is the kind of project that gets you referrals.</p>
+    <div class="ep-row">
+      <div class="ep-block">
+        <div class="ep-block-label lb-mint">What You'll Learn</div>
+        <ul>
+          <li>Time series forecasting for D2C: seasonality, promotions, new launches</li>
+          <li>Model selection: ARIMA vs Prophet vs LightGBM for demand</li>
+          <li>SKU-level forecasting: handling long-tail products</li>
+          <li>Reorder point calculation and safety stock logic</li>
+          <li>Building an automated alert: "These 12 SKUs will stockout in 8 days"</li>
+          <li>ROI framing: "This model saves GlowKart ₹15L/year in dead stock"</li>
+        </ul>
+      </div>
+      <div class="ep-block">
+        <div class="ep-block-label lb-gold">Live Exercise</div>
+        <ul>
+          <li>Build a Prophet model on GlowKart's top 20 SKUs</li>
+          <li>Generate 30-day demand forecast per SKU</li>
+          <li>Calculate reorder alerts with safety stock buffer</li>
+          <li>Build a simple Streamlit app: "Inventory Intelligence Dashboard"</li>
+        </ul>
+      </div>
+    </div>
+    <div class="deliverable-tag">📄 Deliverable: Forecasting Model + Inventory Alert App + ROI Summary</div>
+    <div class="ep-meta">
+      <span>⏱ 120 min</span>
+      <span>🎯 Applied ML</span>
+      <span>📍 Python, Prophet, Streamlit</span>
+    </div>
+  </div>
+
+  <!-- EP 10 -->
+  <div class="ep-card">
+    <div class="ep-top">
+      <div class="ep-badge">EP 10</div>
+      <div class="ep-title">AI Chatbot & Recommendation Engine for GlowKart</div>
+    </div>
+    <p>The "Phase 3" deliverable — build an AI-powered customer support chatbot (WhatsApp-ready) and a simple product recommendation engine. This is the highest-value, most impressive deliverable in the engagement and the centerpiece of your consulting portfolio.</p>
+    <div class="ep-row">
+      <div class="ep-block">
+        <div class="ep-block-label lb-mint">What You'll Learn</div>
+        <ul>
+          <li>RAG architecture for customer support: knowledge base → retrieval → response</li>
+          <li>Building a product FAQ chatbot using Gemini/OpenAI API + vector store</li>
+          <li>Handling Indian use cases: Hinglish queries, regional language fallback</li>
+          <li>Product recommendation: collaborative filtering on purchase history</li>
+          <li>WhatsApp integration pathway (Twilio / Meta Business API)</li>
+          <li>Cost estimation: API costs at GlowKart's query volume</li>
+        </ul>
+      </div>
+      <div class="ep-block">
+        <div class="ep-block-label lb-gold">Live Exercise</div>
+        <ul>
+          <li>Build a Streamlit chatbot with GlowKart's FAQ + product catalog as knowledge base</li>
+          <li>Add a recommendation module: "Customers who bought X also bought Y"</li>
+          <li>Test with 10 real-world queries (including Hinglish ones)</li>
+          <li>Estimate monthly API cost for 5,000 queries/month</li>
+        </ul>
+      </div>
+    </div>
+    <div class="deliverable-tag">📄 Deliverable: Working Chatbot + Recommendation Engine + Cost-Benefit Analysis</div>
+    <div class="ep-meta">
+      <span>⏱ 150 min</span>
+      <span>🎯 GenAI applied</span>
+      <span>📍 Python, LLM APIs, RAG, Streamlit</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PHASE 4 ==================== -->
+<div class="phase p4">
+  <div class="phase-header">
+    <div class="phase-num">IV</div>
+    <div>
+      <h3>Phase 4 — Delivery, Handoff & Stakeholder Management</h3>
+      <div class="phase-desc">Episodes 11–13 · The work is done. Now present it, hand it off, and close the engagement properly.</div>
+    </div>
+  </div>
+
+  <!-- EP 11 -->
+  <div class="ep-card">
+    <div class="ep-top">
+      <div class="ep-badge">EP 11</div>
+      <div class="ep-title">The Consulting Presentation: Storytelling with Data</div>
+    </div>
+    <p>You've built dashboards, models, and an AI chatbot. Now you need to present all of it to GlowKart's founder and their investors in a 30-minute session. This episode teaches the art of consulting storytelling — the "so what" that makes clients pay for the next engagement.</p>
+    <div class="ep-row">
+      <div class="ep-block">
+        <div class="ep-block-label lb-mint">What You'll Learn</div>
+        <ul>
+          <li>The Pyramid Principle: answer first, then evidence (McKinsey framework)</li>
+          <li>Structuring a consulting deck: situation → complication → resolution</li>
+          <li>Data visualization for non-technical audiences: less is more</li>
+          <li>Handling tough questions: "How confident are you in this model?"</li>
+          <li>Presenting ROI: framing everything in rupees saved or earned</li>
+          <li>The "leave-behind" — a 2-page executive summary for the investor</li>
+        </ul>
+      </div>
+      <div class="ep-block">
+        <div class="ep-block-label lb-gold">Live Exercise</div>
+        <ul>
+          <li>Build a 15-slide consulting deck for GlowKart (template provided)</li>
+          <li>Present to the group — 10-minute presentation + 5-minute Q&A</li>
+          <li>Peer feedback: "Would you pay for the next phase after seeing this?"</li>
+          <li>Write a 2-page executive summary for GlowKart's board</li>
+        </ul>
+      </div>
+    </div>
+    <div class="deliverable-tag">📄 Deliverable: 15-Slide Consulting Deck + 2-Page Executive Summary</div>
+    <div class="ep-meta">
+      <span>⏱ 120 min</span>
+      <span>🎯 Communication mastery</span>
+      <span>📍 Google Slides / Canva</span>
+    </div>
+  </div>
+
+  <!-- EP 12 -->
+  <div class="ep-card">
+    <div class="ep-top">
+      <div class="ep-badge">EP 12</div>
+      <div class="ep-title">Handoff, Documentation & Making Yourself Replaceable</div>
+    </div>
+    <p>A great consultant builds solutions the client can maintain without them. This episode covers how to document everything, train the client's internal team, and hand off cleanly — while positioning yourself for a retainer or the next phase.</p>
+    <div class="ep-row">
+      <div class="ep-block">
+        <div class="ep-block-label lb-mint">What You'll Learn</div>
+        <ul>
+          <li>Technical documentation: what to document, how much detail, what format</li>
+          <li>Training the client's team: running a "knowledge transfer" session</li>
+          <li>Code handoff: repo structure, README, environment setup guide</li>
+          <li>Dashboard maintenance guide: "If this breaks, do this"</li>
+          <li>The paradox: making yourself replaceable is what makes clients keep you</li>
+          <li>Positioning for Phase 2: "Here's what I'd recommend next"</li>
+        </ul>
+      </div>
+      <div class="ep-block">
+        <div class="ep-block-label lb-gold">Live Exercise</div>
+        <ul>
+          <li>Write a README for the GlowKart analytics repo</li>
+          <li>Create a "Maintenance Playbook" for the dashboard and chatbot</li>
+          <li>Draft a "Phase 2 Proposal" email: next engagement ideas + pricing</li>
+          <li>Role-play: the handoff meeting with GlowKart's newly hired analyst</li>
+        </ul>
+      </div>
+    </div>
+    <div class="deliverable-tag">📄 Deliverable: Handoff Docs + Maintenance Playbook + Phase 2 Proposal Draft</div>
+    <div class="ep-meta">
+      <span>⏱ 90 min</span>
+      <span>🎯 Professional maturity</span>
+      <span>📍 Docs, GitHub, email</span>
+    </div>
+  </div>
+
+  <!-- EP 13 -->
+  <div class="ep-card">
+    <div class="ep-top">
+      <div class="ep-badge">EP 13</div>
+      <div class="ep-title">Closing the Engagement: Invoicing, Testimonials & Case Studies</div>
+    </div>
+    <p>The engagement is done. Now close it properly — send the final invoice, collect a testimonial, write a case study for your portfolio, and request referrals. This "last mile" is what separates consultants who get one client from those who build a practice.</p>
+    <div class="ep-row">
+      <div class="ep-block">
+        <div class="ep-block-label lb-mint">What You'll Learn</div>
+        <ul>
+          <li>Final invoicing: GST for freelance consultants in India, payment terms</li>
+          <li>How to ask for a testimonial (the exact email template)</li>
+          <li>Writing a portfolio case study: STAR format for consulting</li>
+          <li>Requesting referrals without being awkward</li>
+          <li>Post-engagement follow-up: 30-60-90 day check-ins</li>
+          <li>Turning one project into three: the referral flywheel</li>
+        </ul>
+      </div>
+      <div class="ep-block">
+        <div class="ep-block-label lb-gold">Live Exercise</div>
+        <ul>
+          <li>Generate a GST-compliant invoice for the GlowKart engagement</li>
+          <li>Write the GlowKart case study for your portfolio (template provided)</li>
+          <li>Draft a testimonial request email to Priya Mehra</li>
+          <li>Draft a referral ask: "Know anyone else who needs this?"</li>
+        </ul>
+      </div>
+    </div>
+    <div class="deliverable-tag">📄 Deliverable: GST Invoice Template + Portfolio Case Study + Referral Email Templates</div>
+    <div class="ep-meta">
+      <span>⏱ 90 min</span>
+      <span>🎯 Business operations</span>
+      <span>📍 Docs, spreadsheets</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PHASE 5 ==================== -->
+<div class="phase p5">
+  <div class="phase-header">
+    <div class="phase-num">V</div>
+    <div>
+      <h3>Phase 5 — Scale Your Consulting Practice</h3>
+      <div class="phase-desc">Episodes 14–15 · You've completed one engagement. Now build a sustainable practice.</div>
+    </div>
+  </div>
+
+  <!-- EP 14 -->
+  <div class="ep-card">
+    <div class="ep-top">
+      <div class="ep-badge">EP 14</div>
+      <div class="ep-title">Building Your Brand & Finding Clients</div>
+    </div>
+    <p>GlowKart is one client. You need a pipeline. This episode covers personal branding, portfolio websites, LinkedIn positioning, Upwork/Toptal strategy, cold outreach, and how to sell to Indian SMEs and startups who don't even know they need a data consultant.</p>
+    <div class="ep-row">
+      <div class="ep-block">
+        <div class="ep-block-label lb-mint">What You'll Learn</div>
+        <ul>
+          <li>Personal brand architecture: "I help [audience] do [outcome] using [method]"</li>
+          <li>Portfolio website: what to include, what to skip (live reviews)</li>
+          <li>LinkedIn strategy for consultants: content, DMs, inbound</li>
+          <li>Upwork / Toptal / Contra: creating winning profiles & proposals</li>
+          <li>Cold outreach to Indian SMEs: the email, the WhatsApp message, the follow-up</li>
+          <li>Pricing psychology: why charging more gets you better clients</li>
+          <li>Networking: local startup events, founder communities, referral circles</li>
+        </ul>
+      </div>
+      <div class="ep-block">
+        <div class="ep-block-label lb-gold">Live Exercise</div>
+        <ul>
+          <li>Write your LinkedIn headline + "About" section (consultant positioning)</li>
+          <li>Draft 3 cold outreach messages for different types of clients</li>
+          <li>Create an Upwork profile + 1 sample proposal for a real gig listing</li>
+          <li>Peer review: live critique of learner portfolios & LinkedIn profiles</li>
+        </ul>
+      </div>
+    </div>
+    <div class="deliverable-tag">📄 Deliverable: LinkedIn Profile Copy + Cold Outreach Templates + Upwork Profile</div>
+    <div class="ep-meta">
+      <span>⏱ 120 min</span>
+      <span>🎯 Growth & sales</span>
+      <span>📍 LinkedIn, Upwork, Portfolio site</span>
+    </div>
+  </div>
+
+  <!-- EP 15 -->
+  <div class="ep-card">
+    <div class="ep-top">
+      <div class="ep-badge">EP 15</div>
+      <div class="ep-title">From Solo Consultant to Micro-Agency: Scaling & Productizing</div>
+    </div>
+    <p>The final episode. You've landed clients and delivered results. Now think bigger: productizing your services, building a small team, creating recurring revenue, and eventually building a micro-agency. Featuring a guest — an Indian AI consultant who's made this journey.</p>
+    <div class="ep-row">
+      <div class="ep-block">
+        <div class="ep-block-label lb-mint">What You'll Learn</div>
+        <ul>
+          <li>Productizing services: "Data Audit Package" → "Analytics Setup Package" → "AI Chatbot Package"</li>
+          <li>Recurring revenue models: monthly retainers, maintenance contracts, "AI-as-a-Service"</li>
+          <li>Building a team: hiring freelancers, managing delivery, QA</li>
+          <li>Scaling from ₹5L/year to ₹25L+/year: the levers</li>
+          <li>When to register a company: LLP vs Pvt Ltd in India</li>
+          <li>Long-term vision: consulting → SaaS → product</li>
+        </ul>
+      </div>
+      <div class="ep-block">
+        <div class="ep-block-label lb-gold">Live Exercise + Guest Session</div>
+        <ul>
+          <li>Design your 3-tier service menu with pricing</li>
+          <li>Draft a retainer proposal for GlowKart (₹50K/month ongoing support)</li>
+          <li>Guest AMA: An Indian AI consultant shares their journey, mistakes, and advice</li>
+          <li>Final portfolio review: present your complete GlowKart case study to the cohort</li>
+        </ul>
+      </div>
+    </div>
+    <div class="deliverable-tag">📄 Deliverable: Service Menu + Retainer Template + Complete Portfolio Case Study</div>
+    <div class="ep-meta">
+      <span>⏱ 150 min</span>
+      <span>🎯 Entrepreneurship</span>
+      <span>📍 Guest speaker + workshop</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SUMMARY TABLE ===== -->
+<div class="sec">
+  <div class="sec-label">At a Glance</div>
+  <h2>All 15 episodes <em>at a glance</em></h2>
+
+  <table class="sum-table">
+    <thead>
+      <tr>
+        <th>Ep</th>
+        <th>Title</th>
+        <th>Phase</th>
+        <th>Key Deliverable</th>
+        <th>Duration</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="epnum">01</td><td>First Client Call & AI Consulting Landscape</td><td>Discovery</td><td>Discovery Notes Template</td><td>90 min</td></tr>
+      <tr><td class="epnum">02</td><td>Business Understanding: Metrics & Data Maturity</td><td>Discovery</td><td>Data Maturity Scorecard</td><td>90 min</td></tr>
+      <tr><td class="epnum">03</td><td>Writing the Proposal: SOW, Pricing & Plan</td><td>Discovery</td><td>Complete SOW + Pricing Sheet</td><td>90 min</td></tr>
+      <tr><td class="epnum">04</td><td>Data Audit: What Exists, What's Missing</td><td>Data</td><td>Data Audit Report + Catalog</td><td>90 min</td></tr>
+      <tr><td class="epnum">05</td><td>Data Extraction & Pipeline Design</td><td>Data</td><td>ETL Script + Pipeline Runbook</td><td>120 min</td></tr>
+      <tr><td class="epnum">06</td><td>Data Cleaning & Single Source of Truth</td><td>Data</td><td>Clean Schema + Data Dictionary</td><td>120 min</td></tr>
+      <tr><td class="epnum">07</td><td>Executive Dashboard: The First "Wow" Moment</td><td>Build</td><td>Working Dashboard + Spec Doc</td><td>120 min</td></tr>
+      <tr><td class="epnum">08</td><td>Customer Segmentation & Cohort Analysis</td><td>Build</td><td>Segments + Churn Model + Brief</td><td>120 min</td></tr>
+      <tr><td class="epnum">09</td><td>Demand Forecasting & Inventory Intelligence</td><td>Build</td><td>Forecast Model + Alert App</td><td>120 min</td></tr>
+      <tr><td class="epnum">10</td><td>AI Chatbot & Recommendation Engine</td><td>Build</td><td>Working Chatbot + Cost Analysis</td><td>150 min</td></tr>
+      <tr><td class="epnum">11</td><td>Consulting Presentation: Storytelling with Data</td><td>Delivery</td><td>15-Slide Deck + Exec Summary</td><td>120 min</td></tr>
+      <tr><td class="epnum">12</td><td>Handoff, Documentation & Knowledge Transfer</td><td>Delivery</td><td>Handoff Docs + Phase 2 Proposal</td><td>90 min</td></tr>
+      <tr><td class="epnum">13</td><td>Closing: Invoicing, Testimonials & Case Studies</td><td>Delivery</td><td>Invoice + Case Study + Templates</td><td>90 min</td></tr>
+      <tr><td class="epnum">14</td><td>Building Your Brand & Finding Clients</td><td>Scale</td><td>LinkedIn + Outreach + Upwork Profile</td><td>120 min</td></tr>
+      <tr><td class="epnum">15</td><td>Solo Consultant → Micro-Agency</td><td>Scale</td><td>Service Menu + Retainer Template</td><td>150 min</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- CALLOUT -->
+<div class="callout">
+  <h3>By Episode 15, every learner has:</h3>
+  <p>A <strong>complete consulting case study</strong> (GlowKart) in their portfolio with working code, dashboards, ML models, an AI chatbot, a consulting deck, and all business templates (SOW, invoices, proposals). Plus the skills and confidence to go find their first real client.</p>
+</div>
+
+</div><!-- /wrap -->
+
+<div style="text-align:center;padding:48px 24px;font-size:13px;color:var(--t3)">
+  IntelliBridge · Data & AI Consulting Webinar Blueprint · April 2026
+</div>
+
+</body>
+</html>
