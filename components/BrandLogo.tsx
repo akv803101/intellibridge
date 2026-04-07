@@ -2,11 +2,12 @@
 
 import Link from 'next/link'
 
-const SRC = '/intellibridge-logo-horizontal.png'
+/** Cube compact mark; bump `LOGO_QUERY` if the asset changes and caches linger. */
+const SRC = '/intellibridge-logo.svg?v=no-bg'
 
 type Props = {
   className?: string
-  /** Tailwind height classes; width follows PNG aspect ratio */
+  /** Tailwind height classes; width follows SVG aspect ratio */
   heightClass?: string
   priority?: boolean
 }
@@ -17,13 +18,12 @@ export function BrandLogo({ className = '', heightClass = 'h-12 sm:h-14', priori
       href="/"
       className={`brand-logo-link block w-max max-w-[min(380px,92vw)] shrink-0 no-underline ${className}`}
     >
-      {/* Native img: avoids next/image flex sizing quirks that can clip the mark */}
-      {/* eslint-disable-next-line @next/next/no-img-element -- intentional for full raster visibility */}
+      {/* eslint-disable-next-line @next/next/no-img-element -- SVG logo asset */}
       <img
         src={SRC}
         alt="IntelliBridge"
-        width={1103}
-        height={375}
+        width={300}
+        height={92}
         decoding="async"
         fetchPriority={priority ? 'high' : undefined}
         className={`block w-auto max-w-full object-contain object-left ${heightClass}`}

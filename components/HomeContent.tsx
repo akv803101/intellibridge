@@ -244,7 +244,9 @@ export function HomeContent() {
       <Link
         href="/consulting-webinar-blueprint/"
         className="program-card program-highlight program-card--link"
-        aria-label="Data & AI Consulting — open 15-episode webinar blueprint"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Data & AI Consulting — open webinar blueprint in a new tab"
       >
         <div className="prog-badge-new">NEW TRACK</div>
         <div className="prog-icon">💼</div>

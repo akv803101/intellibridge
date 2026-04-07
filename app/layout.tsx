@@ -16,13 +16,21 @@ export const metadata: Metadata = {
   title: 'IntelliBridge — Learn Data & AI. Build. Consult.',
   description:
     "India's practitioner-led bootcamp for Data & AI — technical tracks plus a consulting path to scope, price, and deliver for real clients.",
+  // Explicit + cache-busted: many browsers probe /favicon.ico first (see public/favicon.ico).
+  icons: {
+    icon: [
+      { url: '/favicon.ico?v=cube-2026', sizes: 'any' },
+      { url: '/favicon-48.png?v=cube-2026', type: 'image/png', sizes: '48x48' },
+    ],
+    apple: [{ url: '/favicon-48.png?v=cube-2026', sizes: '48x48', type: 'image/png' }],
+  },
 }
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
-  themeColor: '#06080f',
+  themeColor: '#060910',
 }
 
 export default function RootLayout({

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="92" viewBox="0 0 300 92" role="img" aria-labelledby="logoTitle">
+  <title id="logoTitle">IntelliBridge</title>
+  <polygon points="40,12 66,26 40,40 14,26" fill="#6BA3F5"/>
+  <polygon points="14,26 40,40 40,68 14,54" fill="#12192E"/>
+  <polygon points="66,26 40,40 40,68 66,54" fill="#F5A623"/>
+  <line x1="40" y1="12" x2="40" y2="40" stroke="#fff" stroke-width="0.5" opacity="0.2"/>
+  <rect x="80" y="16" width="3" height="52" rx="1.5" fill="#5B8FD4"/>
+  <text x="90" y="46" font-family="'Arial Black','Segoe UI',system-ui,sans-serif" font-size="20" font-weight="900" fill="#ffffff" letter-spacing="0.5">INTELLIBRIDGE</text>
+  <rect x="90" y="54" width="62" height="2" rx="1" fill="#5B8FD4"/>
+  <rect x="156" y="54" width="62" height="2" rx="1" fill="#2A52C0"/>
+  <rect x="222" y="54" width="38" height="2" rx="1" fill="#F5A623"/>
+</svg>
