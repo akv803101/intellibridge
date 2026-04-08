@@ -186,6 +186,26 @@ export function HomeContent() {
       build.
     </p>
     <div className="program-grid">
+      <Link
+        href="/consulting-webinar-blueprint/"
+        className="program-card program-highlight program-card--link"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Data & AI Consulting — open webinar blueprint in a new tab"
+      >
+        <div className="prog-badge-new">NEW TRACK</div>
+        <div className="prog-icon">💼</div>
+        <span className="prog-tag tag-ai">Consulting</span>
+        <h3>Data &amp; AI Consulting</h3>
+        <p>
+          Learn to scope, price, and deliver AI consulting engagements. Build a portfolio. Land your first paying
+          client.
+        </p>
+        <div className="prog-meta">
+          <span>⏱ 10 weeks</span>
+          <span>🖥 Live Webinars</span>
+        </div>
+      </Link>
       <div className="program-card">
         <div className="prog-icon">📊</div>
         <span className="prog-tag tag-ds">Data Science</span>
@@ -240,27 +260,6 @@ export function HomeContent() {
           <span>🖥 Live + Async</span>
         </div>
       </div>
-
-      <Link
-        href="/consulting-webinar-blueprint/"
-        className="program-card program-highlight program-card--link"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Data & AI Consulting — open webinar blueprint in a new tab"
-      >
-        <div className="prog-badge-new">NEW TRACK</div>
-        <div className="prog-icon">💼</div>
-        <span className="prog-tag tag-ai">Consulting</span>
-        <h3>Data &amp; AI Consulting</h3>
-        <p>
-          Learn to scope, price, and deliver AI consulting engagements. Build a portfolio. Land your first paying
-          client.
-        </p>
-        <div className="prog-meta">
-          <span>⏱ 10 weeks</span>
-          <span>🖥 Live Webinars</span>
-        </div>
-      </Link>
     </div>
   </div>
 </section>
