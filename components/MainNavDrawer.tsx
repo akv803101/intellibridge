@@ -64,16 +64,13 @@ export function MainNavDrawer({ open, onClose, blogActive, homeActions }: Props)
               >
                 Corporate Training
               </a>
-              <a
-                href="#"
+              <Link
+                href="/login/"
                 className="btn btn-ghost nav-mobile-action-btn"
-                onClick={(e) => {
-                  e.preventDefault()
-                  onClose()
-                }}
+                onClick={onClose}
               >
                 Login
-              </a>
+              </Link>
               <button
                 type="button"
                 className="btn btn-primary nav-mobile-action-btn"

@@ -69,7 +69,7 @@ export function HomeContent() {
   </ul>
   <div className="nav-ctas">
     <a href="http://business.intellibridge.in/" className="btn btn-outline" target="_blank" rel="noopener noreferrer">Corporate Training</a>
-    <a href="#" className="btn btn-ghost">Login</a>
+    <Link href="/login/" className="btn btn-ghost">Login</Link>
     <button type="button" className="btn btn-primary" onClick={() => setApplyOpen(true)}>
       Apply Now →
     </button>

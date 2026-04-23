@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Plus_Jakarta_Sans } from 'next/font/google'
+import { AuthProvider } from '@/lib/authContext'
 import './globals.css'
 
 const fontJakarta = Plus_Jakarta_Sans({
@@ -40,7 +41,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={fontJakarta.variable} suppressHydrationWarning>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   )
 }
