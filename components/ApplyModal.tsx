@@ -1,8 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { collection, addDoc } from 'firebase/firestore'
-import { db } from '@/lib/firebase'
+import { supabase } from '@/lib/supabase'
 
 /** Paste deployed Web App URL from Apps Script. Leave empty to submit via mailto only. */
 const APPS_SCRIPT_WEB_APP_URL = ''
@@ -134,13 +133,21 @@ export function ApplyModal({ open, onClose }: { open: boolean; onClose: () => vo
 
     setSubmitting(true)
 
-    // Save to Firestore (silently, so admin panel has data regardless of other submission path)
-    if (db) {
-      try {
-        await addDoc(collection(db, 'applications'), payload)
-      } catch {
-        // Firestore not configured or offline — continue with other submission paths
-      }
+    // Save to Supabase (silently, so admin panel has data regardless of other submission path)
+    try {
+      await supabase.from('applications').insert([{
+        first_name: payload.firstName,
+        last_name: payload.lastName,
+        email: payload.email,
+        phone: payload.phone,
+        track: payload.track,
+        profile: payload.profile,
+        experience: payload.experience,
+        company: payload.company,
+        source: payload.source,
+      }])
+    } catch {
+      // Supabase not configured or offline — continue with other submission paths
     }
 
     if (APPS_SCRIPT_WEB_APP_URL) {

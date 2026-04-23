@@ -1,8 +1,8 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
-import { User, onAuthStateChanged } from 'firebase/auth'
-import { auth } from './firebase'
+import type { User } from '@supabase/supabase-js'
+import { supabase } from './supabase'
 
 const ADMIN_EMAILS = (process.env.NEXT_PUBLIC_ADMIN_EMAILS || '')
   .split(',')
@@ -26,15 +26,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    if (!auth) { setLoading(false); return }
-    return onAuthStateChanged(auth, (u) => {
-      setUser(u)
+    // Load existing session on mount
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null)
       setLoading(false)
     })
+
+    // Listen for sign-in / sign-out / token-refresh
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null)
+      setLoading(false)
+    })
+
+    return () => subscription.unsubscribe()
   }, [])
 
-  // If no admin emails configured, any logged-in user gets admin access (dev/setup mode)
-  const isAdmin = !!user && (ADMIN_EMAILS.length === 0 || ADMIN_EMAILS.includes(user.email || ''))
+  // If no admin emails configured, any logged-in user gets admin access (initial setup mode)
+  const isAdmin = !!user && (ADMIN_EMAILS.length === 0 || ADMIN_EMAILS.includes(user.email ?? ''))
 
   return <AuthContext.Provider value={{ user, loading, isAdmin }}>{children}</AuthContext.Provider>
 }

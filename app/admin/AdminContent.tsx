@@ -3,23 +3,21 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { signOut } from 'firebase/auth'
-import { collection, getDocs, orderBy, query } from 'firebase/firestore'
-import { auth, db } from '@/lib/firebase'
+import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/authContext'
 import { BrandLogo } from '@/components/BrandLogo'
 
 interface Application {
   id: string
-  firstName: string
-  lastName: string
+  first_name: string
+  last_name: string
   email: string
   phone: string
   track: string
   profile: string
   experience?: string
   company?: string
-  timestamp: string
+  created_at: string
   source?: string
 }
 
@@ -52,11 +50,11 @@ export function AdminContent() {
     if (!user || !isAdmin) return
     async function fetchApps() {
       try {
-        const q = query(collection(db, 'applications'), orderBy('timestamp', 'desc'))
-        const snap = await getDocs(q)
-        setApps(snap.docs.map((d) => ({ id: d.id, ...(d.data() as Omit<Application, 'id'>) })))
-      } catch {
-        // Firestore not yet configured or empty
+        const { data, error } = await supabase
+          .from('applications')
+          .select('*')
+          .order('created_at', { ascending: false })
+        if (!error && data) setApps(data as Application[])
       } finally {
         setFetching(false)
       }
@@ -68,7 +66,7 @@ export function AdminContent() {
     const term = search.toLowerCase()
     const matchSearch =
       !term ||
-      `${a.firstName} ${a.lastName}`.toLowerCase().includes(term) ||
+      `${a.first_name} ${a.last_name}`.toLowerCase().includes(term) ||
       (a.email || '').toLowerCase().includes(term) ||
       (a.phone || '').includes(term)
     const matchTrack = !trackFilter || a.track === trackFilter
@@ -76,7 +74,7 @@ export function AdminContent() {
   })
 
   const thisMonth = apps.filter((a) => {
-    const d = new Date(a.timestamp)
+    const d = new Date(a.created_at)
     const now = new Date()
     return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear()
   }).length
@@ -90,7 +88,7 @@ export function AdminContent() {
 
   async function handleSignOut() {
     setSigningOut(true)
-    await signOut(auth)
+    await supabase.auth.signOut()
     router.replace('/login/')
   }
 
@@ -110,9 +108,7 @@ export function AdminContent() {
         <BrandLogo />
         <ul className="nav-links" />
         <div className="nav-ctas">
-          <span className="admin-user-label">
-            {user.email || user.phoneNumber}
-          </span>
+          <span className="admin-user-label">{user.email ?? user.phone}</span>
           <button className="btn btn-ghost" onClick={handleSignOut} disabled={signingOut}>
             {signingOut ? 'Signing out…' : 'Sign out'}
           </button>
@@ -120,7 +116,6 @@ export function AdminContent() {
       </nav>
 
       <div className="admin-content">
-        {/* Header */}
         <div className="admin-header">
           <div>
             <div className="section-label">Admin Dashboard</div>
@@ -141,13 +136,13 @@ export function AdminContent() {
             <div className="admin-stat-num">{thisMonth}</div>
             <div className="admin-stat-label">This Month</div>
           </div>
-          <div className="admin-stat-card admin-stat-card--accent">
+          <div className="admin-stat-card">
             <div className="admin-stat-num admin-stat-num--sm">{topTrack}</div>
             <div className="admin-stat-label">Top Track</div>
           </div>
         </div>
 
-        {/* Track breakdown */}
+        {/* Track filter chips */}
         <div className="admin-track-row">
           {TRACKS.map((t) => {
             const count = apps.filter((a) => a.track === t).length
@@ -177,16 +172,11 @@ export function AdminContent() {
             onChange={(e) => setTrackFilter(e.target.value)}
           >
             <option value="">All Tracks</option>
-            {TRACKS.map((t) => (
-              <option key={t} value={t}>{t}</option>
-            ))}
+            {TRACKS.map((t) => <option key={t} value={t}>{t}</option>)}
           </select>
           {(search || trackFilter) && (
-            <button
-              className="btn btn-ghost"
-              style={{ whiteSpace: 'nowrap' }}
-              onClick={() => { setSearch(''); setTrackFilter('') }}
-            >
+            <button className="btn btn-ghost" style={{ whiteSpace: 'nowrap' }}
+              onClick={() => { setSearch(''); setTrackFilter('') }}>
               Clear
             </button>
           )}
@@ -219,7 +209,7 @@ export function AdminContent() {
               ) : (
                 filtered.map((a) => (
                   <tr key={a.id}>
-                    <td className="admin-td-name">{a.firstName} {a.lastName}</td>
+                    <td className="admin-td-name">{a.first_name} {a.last_name}</td>
                     <td><a href={`mailto:${a.email}`} className="admin-link">{a.email}</a></td>
                     <td>{a.phone}</td>
                     <td><span className="admin-track-badge">{a.track}</span></td>
@@ -227,8 +217,8 @@ export function AdminContent() {
                     <td>{a.experience || '—'}</td>
                     <td>{a.company || '—'}</td>
                     <td className="admin-td-date">
-                      {new Date(a.timestamp).toLocaleDateString('en-IN', {
-                        day: 'numeric', month: 'short', year: 'numeric'
+                      {new Date(a.created_at).toLocaleDateString('en-IN', {
+                        day: 'numeric', month: 'short', year: 'numeric',
                       })}
                     </td>
                   </tr>

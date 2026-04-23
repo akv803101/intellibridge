@@ -1,16 +1,9 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import {
-  signInWithPopup,
-  GoogleAuthProvider,
-  signInWithPhoneNumber,
-  RecaptchaVerifier,
-  ConfirmationResult,
-} from 'firebase/auth'
-import { auth } from '@/lib/firebase'
+import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/authContext'
 import { BrandLogo } from '@/components/BrandLogo'
 
@@ -26,9 +19,6 @@ export function LoginContent() {
   const [verifying, setVerifying] = useState(false)
   const [googleLoading, setGoogleLoading] = useState(false)
 
-  const confirmRef = useRef<ConfirmationResult | null>(null)
-  const recaptchaRef = useRef<RecaptchaVerifier | null>(null)
-
   useEffect(() => {
     if (!loading && user) router.replace('/admin/')
   }, [user, loading, router])
@@ -37,10 +27,13 @@ export function LoginContent() {
     setError('')
     setGoogleLoading(true)
     try {
-      await signInWithPopup(auth, new GoogleAuthProvider())
-    } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : 'Google sign-in failed'
-      if (!msg.includes('popup-closed-by-user')) setError(msg)
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: { redirectTo: `${window.location.origin}/admin/` },
+      })
+      if (error) setError(error.message)
+    } catch {
+      setError('Google sign-in failed. Please try again.')
     } finally {
       setGoogleLoading(false)
     }
@@ -52,33 +45,28 @@ export function LoginContent() {
     if (num.length < 8) return setError('Enter a valid phone number with country code, e.g. +91 98765 43210')
     setSending(true)
     try {
-      if (!recaptchaRef.current) {
-        recaptchaRef.current = new RecaptchaVerifier(auth, 'recaptcha-container', {
-          size: 'invisible',
-        })
-      }
-      confirmRef.current = await signInWithPhoneNumber(auth, num, recaptchaRef.current)
+      const { error } = await supabase.auth.signInWithOtp({ phone: num })
+      if (error) throw error
       setStep('otp')
     } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : 'Failed to send OTP'
-      setError(msg)
-      if (recaptchaRef.current) {
-        recaptchaRef.current.clear()
-        recaptchaRef.current = null
-      }
+      setError(e instanceof Error ? e.message : 'Failed to send OTP. Check if phone auth is enabled in Supabase.')
     } finally {
       setSending(false)
     }
   }
 
   async function handleVerifyOtp() {
-    if (!confirmRef.current) return
     setError('')
     setVerifying(true)
     try {
-      await confirmRef.current.confirm(otp.trim())
-    } catch {
-      setError('Invalid OTP. Please try again.')
+      const { error } = await supabase.auth.verifyOtp({
+        phone: phone.trim(),
+        token: otp.trim(),
+        type: 'sms',
+      })
+      if (error) throw error
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : 'Invalid OTP. Please try again.')
     } finally {
       setVerifying(false)
     }
@@ -120,13 +108,9 @@ export function LoginContent() {
           {error && <div className="login-error" role="alert">{error}</div>}
 
           {/* Google */}
-          <button
-            className="btn-google"
-            onClick={handleGoogleLogin}
-            disabled={googleLoading}
-          >
+          <button className="btn-google" onClick={handleGoogleLogin} disabled={googleLoading}>
             <GoogleIcon />
-            {googleLoading ? 'Signing in…' : 'Continue with Google'}
+            {googleLoading ? 'Redirecting…' : 'Continue with Google'}
           </button>
 
           <div className="login-divider"><span>or sign in with phone</span></div>
@@ -177,8 +161,6 @@ export function LoginContent() {
               </button>
             </div>
           )}
-
-          <div id="recaptcha-container" />
         </div>
       </div>
     </div>
