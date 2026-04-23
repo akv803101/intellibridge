@@ -15,6 +15,7 @@
     "@portabletext/react": "^3.2.0",
     "@sanity/client": "^6.28.0",
     "@sanity/image-url": "^1.1.0",
+    "@supabase/ssr": "^0.10.2",
     "@supabase/supabase-js": "^2.104.1",
     "next": "^15.2.4",
     "react": "^19.0.0",
