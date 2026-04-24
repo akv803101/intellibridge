@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useAuth } from '@/lib/authContext'
@@ -10,11 +10,12 @@ import { BrandLogo } from '@/components/BrandLogo'
 export function LoginContent() {
   const { user, loading } = useAuth()
   const router = useRouter()
+  const searchParams = useSearchParams()
 
   const [email, setEmail] = useState('')
   const [sending, setSending] = useState(false)
   const [sent, setSent] = useState(false)
-  const [error, setError] = useState('')
+  const [error, setError] = useState(() => searchParams.get('error') ?? '')
 
   useEffect(() => {
     if (!loading && user) router.replace('/admin/')
